@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IdeaAnchor.Pages.IdeaPage"
+             Title="IdeaPage">
+    <VerticalStackLayout BackgroundColor="{StaticResource ColorVeryDarkGrey}" VerticalOptions="FillAndExpand">
+        <VerticalStackLayout.GestureRecognizers>
+            <TapGestureRecognizer Tapped="Container_Tapped"/>
+        </VerticalStackLayout.GestureRecognizers>
+        <Editor x:Name="EditorMain" Text="{Binding IdeaContent}" AutoSize="TextChanges" BackgroundColor="{StaticResource ColorDarkGrey}" VerticalOptions="FillAndExpand" TextColor="White" Margin="8"/>
+    </VerticalStackLayout>
+</ContentPage>
