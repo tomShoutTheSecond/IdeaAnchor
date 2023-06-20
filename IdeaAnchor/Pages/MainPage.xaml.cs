@@ -1,27 +1,21 @@
 ﻿using IdeaAnchor.Pages;
+using IdeaAnchor.ViewModels;
 
 namespace IdeaAnchor;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
-
-	public MainPage()
+	public MainPage(MainViewModel vm)
 	{
 		InitializeComponent();
+
+		BindingContext = vm;
 	}
 
-	private void OnCounterClicked(object sender, EventArgs e)
+	private async void GoToMyIdeas(object sender, EventArgs e)
 	{
-		count++;
-
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
-
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+		await Shell.Current.GoToAsync(nameof(IdeasListPage));
+    }
 
     private async void CreateNewIdea(object sender, EventArgs e)
     {

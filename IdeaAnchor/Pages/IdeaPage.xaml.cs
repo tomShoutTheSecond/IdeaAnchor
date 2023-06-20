@@ -1,4 +1,5 @@
-﻿using IdeaAnchor.Helper;
+﻿using IdeaAnchor.Database;
+using IdeaAnchor.Helper;
 using IdeaAnchor.ViewModels;
 using Microsoft.Maui.Platform;
 
@@ -8,11 +9,11 @@ public partial class IdeaPage : ContentPage
 {
     public IdeaViewModel ViewModel => BindingContext as IdeaViewModel;
 
-	public IdeaPage()
+	public IdeaPage(IdeaViewModel vm)
 	{
 		InitializeComponent();
 
-        BindingContext = new IdeaViewModel();
+        BindingContext = vm;
 
         Init();
     }
@@ -41,5 +42,10 @@ public partial class IdeaPage : ContentPage
         ViewModel.SaveIdea();
 
         return base.OnBackButtonPressed();
+    }
+
+    private void SaveIdea(System.Object sender, System.EventArgs e)
+    {
+        ViewModel.SaveIdea();
     }
 }

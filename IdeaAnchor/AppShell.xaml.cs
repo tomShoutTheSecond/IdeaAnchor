@@ -10,6 +10,7 @@ public partial class AppShell : Shell
         InitializeComponent();
 
         Routing.RegisterRoute(nameof(IdeaPage), typeof(IdeaPage));
+        Routing.RegisterRoute(nameof(IdeasListPage), typeof(IdeasListPage));
     }
 }
 

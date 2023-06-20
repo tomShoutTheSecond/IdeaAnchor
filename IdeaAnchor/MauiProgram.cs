@@ -1,4 +1,9 @@
-﻿namespace IdeaAnchor;
+﻿using CommunityToolkit.Maui;
+using IdeaAnchor.Database;
+using IdeaAnchor.Pages;
+using IdeaAnchor.ViewModels;
+
+namespace IdeaAnchor;
 
 public static class MauiProgram
 {
@@ -7,13 +12,24 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
+            .UseMauiCommunityToolkit()
+            .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-		return builder.Build();
+        builder.Services.AddTransient<AppShell>();
+        builder.Services.AddTransient<MainPage>();
+        builder.Services.AddTransient<MainViewModel>();
+        builder.Services.AddTransient<IdeaPage>();
+        builder.Services.AddTransient<IdeaViewModel>();
+		builder.Services.AddTransient<IdeasListPage>();
+        builder.Services.AddTransient<IdeasListViewModel>();
+
+        builder.Services.AddSingleton<IdeaDatabase>();
+
+        return builder.Build();
 	}
 }
 

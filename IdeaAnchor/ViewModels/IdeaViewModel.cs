@@ -1,12 +1,18 @@
 ﻿using System;
 using System.Windows.Input;
+using IdeaAnchor.Database;
+using IdeaAnchor.Models;
 
 namespace IdeaAnchor.ViewModels
 {
 	public class IdeaViewModel : BindableObject
 	{
-		public IdeaViewModel()
+        private readonly IdeaDatabase _db;
+
+        public IdeaViewModel(IdeaDatabase db)
 		{
+			_db = db;
+
 			IdeaContent = "";
         }
 
@@ -22,10 +28,24 @@ namespace IdeaAnchor.ViewModels
 			}
 		}
 
-		public void SaveIdea()
+		public async Task SaveIdea()
 		{
 			//TODO: save idea to local storage
-		}
+
+			var idea = new Idea
+			{
+				Content = IdeaContent
+			};
+
+			try
+			{
+                await _db.SaveItemAsync(idea);
+            }
+			catch(Exception e)
+			{
+				Console.WriteLine(e.Message);
+			}
+        }
     }
 }
 

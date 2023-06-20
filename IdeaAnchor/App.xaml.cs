@@ -1,17 +1,18 @@
-﻿using Microsoft.Maui.Platform;
+﻿using Microsoft.Maui.Controls.Compatibility.Platform.Android;
+using Microsoft.Maui.Platform;
 
 namespace IdeaAnchor;
 
 public partial class App : Application
 {
-	public App()
+	public App(AppShell appShell)
 	{
 		InitializeComponent();
 
         SetUpEditor();
 
-        MainPage = new AppShell();
-	}
+        MainPage = appShell;
+    }
 
     /// <summary>
     /// Set up the colors for the Editor control
@@ -25,8 +26,15 @@ public partial class App : Application
             if (App.Current.Resources.TryGetValue("Primary", out var color))
             {
                 var primaryColor = (Color)color;
+
+                //set cursor color
                 handler.PlatformView.TextCursorDrawable.SetTint(primaryColor.ToPlatform());
+
+                //set highlight color
                 handler.PlatformView.SetHighlightColor(primaryColor.ToPlatform());
+
+                //remove underline
+                handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Transparent.ToAndroid());
             }
 
 #elif IOS || MACCATALYST

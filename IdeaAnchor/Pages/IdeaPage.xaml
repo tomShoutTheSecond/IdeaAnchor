@@ -3,12 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IdeaAnchor.Pages.IdeaPage"
              Title="IdeaPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Clicked="SaveIdea" />
+    </ContentPage.ToolbarItems>
+
     <ScrollView>
         <VerticalStackLayout BackgroundColor="{StaticResource ColorVeryDarkGrey}" VerticalOptions="FillAndExpand">
             <VerticalStackLayout.GestureRecognizers>
                 <TapGestureRecognizer Tapped="Container_Tapped"/>
             </VerticalStackLayout.GestureRecognizers>
-        
+
             <Editor x:Name="EditorMain" Text="{Binding IdeaContent}" AutoSize="TextChanges" VerticalOptions="FillAndExpand" TextColor="White" Margin="8, 0, 8, 8"/>
         </VerticalStackLayout>
     </ScrollView>
