@@ -50,13 +50,17 @@
                 <Label Text="&#xf104;" IsVisible="{Binding IdeaIsSaved}" FontSize="24" FontFamily="FontAwesome" HeightRequest="24" WidthRequest="24" HorizontalOptions="Start" VerticalOptions="Fill" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
             </StackLayout>
         </Grid>
+
         <ScrollView>
             <VerticalStackLayout BackgroundColor="{StaticResource ColorVeryDarkGrey}" VerticalOptions="FillAndExpand">
                 <VerticalStackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="Container_Tapped"/>
                 </VerticalStackLayout.GestureRecognizers>
 
-                <Editor x:Name="EditorMain" Text="{Binding IdeaContent}" AutoSize="TextChanges" VerticalOptions="FillAndExpand" TextColor="White" Margin="8, 0, 8, 8"/>
+                <Entry Text="{Binding IdeaTitle}" FontSize="36" Placeholder="Title" TextColor="White" Margin="8, 0, 8, 0"/>
+
+                <!-- Main Editor -->
+                <Editor x:Name="EditorMain" Text="{Binding IdeaContent}" Placeholder="Start writing" AutoSize="TextChanges" VerticalOptions="FillAndExpand" TextColor="White" Margin="8, 0, 8, 8"/>
             </VerticalStackLayout>
         </ScrollView>
     </VerticalStackLayout>

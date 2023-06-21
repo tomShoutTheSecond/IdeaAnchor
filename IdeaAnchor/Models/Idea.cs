@@ -11,7 +11,7 @@ namespace IdeaAnchor.Models
 
 		public string Content { get; set; }
 
-		public string Title => this.GetTitle();
+		public string Title { get; set; }
 	}
 }
 

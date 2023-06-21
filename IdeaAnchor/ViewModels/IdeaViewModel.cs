@@ -26,11 +26,23 @@ namespace IdeaAnchor.ViewModels
         public IdeaViewModel(IdeaDatabase db)
 		{
 			_db = db;
-
-			IdeaContent = "";
         }
 
-		private string _ideaContent;
+        private string _ideaTitle;
+        public string IdeaTitle
+        {
+            get => _ideaTitle;
+            set
+            {
+                _ideaTitle = value;
+
+                IdeaIsSaved = false;
+
+                OnPropertyChanged(nameof(IdeaTitle));
+            }
+        }
+
+        private string _ideaContent;
 		public string IdeaContent
 		{
 			get => _ideaContent;
@@ -46,10 +58,9 @@ namespace IdeaAnchor.ViewModels
 
 		public async Task SaveIdea()
 		{
-			//TODO: save idea to local storage
-
 			var idea = new Idea
 			{
+				Title = IdeaTitle,
 				Content = IdeaContent
 			};
 
@@ -57,7 +68,7 @@ namespace IdeaAnchor.ViewModels
 			{
                 await _db.SaveItemAsync(idea);
 
-				if (idea.Content == IdeaContent)
+				if (idea.Content == IdeaContent && idea.Title == IdeaTitle)
 				{
 					//user has not changed the text since the save operation was invoked
 
