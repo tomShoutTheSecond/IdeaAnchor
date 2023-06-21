@@ -26,7 +26,12 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <VerticalStackLayout VerticalOptions="Fill">
+    <Grid VerticalOptions="Fill">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
         <Grid Margin="16">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -51,7 +56,7 @@
             </StackLayout>
         </Grid>
 
-        <ScrollView>
+        <ScrollView Grid.Row="1">
             <VerticalStackLayout BackgroundColor="{StaticResource ColorVeryDarkGrey}" VerticalOptions="FillAndExpand">
                 <VerticalStackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="Container_Tapped"/>
@@ -63,6 +68,6 @@
                 <Editor x:Name="EditorMain" Text="{Binding IdeaContent}" Placeholder="Start writing" AutoSize="TextChanges" VerticalOptions="FillAndExpand" TextColor="White" Margin="8, 0, 8, 8"/>
             </VerticalStackLayout>
         </ScrollView>
-    </VerticalStackLayout>
+    </Grid>
     
 </ContentPage>

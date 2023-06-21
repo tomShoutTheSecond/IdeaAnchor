@@ -27,7 +27,7 @@ namespace IdeaAnchor.ViewModels
             _ = LoadIdeas();
         }
 
-        private async Task LoadIdeas()
+        public async Task LoadIdeas()
         {
             try
             {

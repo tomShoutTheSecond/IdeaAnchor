@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IdeaAnchor.Pages.IdeasListPage"
              Title="My Ideas">
-    <ListView ItemsSource="{Binding Ideas}" RowHeight="96" SeparatorVisibility="None" BackgroundColor="{StaticResource ColorVeryDarkGrey}">
+    <ListView ItemsSource="{Binding Ideas}" ItemSelected="ListView_ItemSelected" RowHeight="96" SeparatorVisibility="None" BackgroundColor="{StaticResource ColorVeryDarkGrey}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>

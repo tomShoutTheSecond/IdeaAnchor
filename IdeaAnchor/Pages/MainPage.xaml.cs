@@ -1,6 +1,7 @@
 ﻿using IdeaAnchor.Pages;
 using IdeaAnchor.ViewModels;
 using IdeaAnchor.Helper;
+using Java.Lang;
 
 namespace IdeaAnchor;
 
@@ -31,7 +32,6 @@ public partial class MainPage : ContentPage
     private async void CreateNewIdea(object sender, EventArgs e)
     {
         BorderNewIdea.BackgroundColor = ThemeColors.Primary;
-
         await Shell.Current.GoToAsync(nameof(IdeaPage));
     }
 }

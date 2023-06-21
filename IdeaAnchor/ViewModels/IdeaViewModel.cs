@@ -2,30 +2,34 @@
 using System.Windows.Input;
 using IdeaAnchor.Database;
 using IdeaAnchor.Models;
+using IdeaAnchor.Helper;
 
 namespace IdeaAnchor.ViewModels
 {
-	public class IdeaViewModel : BindableObject
+	public class IdeaViewModel : BindableObject, IQueryAttributable
 	{
-		//TODO: bind the left button icon to this bool
-		//it changes from a check to a back chevron when idea is saved
-		private bool _ideaIsSaved;
-		public bool IdeaIsSaved
-		{
-			get => _ideaIsSaved;
-			set
-			{
-				_ideaIsSaved = value;
-
-				OnPropertyChanged(nameof(IdeaIsSaved));
-			}
-		}
+        private const string DefaultTitle = "Untitled Note";
 
         private readonly IdeaDatabase _db;
+
+        private Idea _existingIdea;
 
         public IdeaViewModel(IdeaDatabase db)
 		{
 			_db = db;
+        }
+
+        //left icon changes from a check to a back chevron when idea is saved
+        private bool _ideaIsSaved;
+        public bool IdeaIsSaved
+        {
+            get => _ideaIsSaved;
+            set
+            {
+                _ideaIsSaved = value;
+
+                OnPropertyChanged(nameof(IdeaIsSaved));
+            }
         }
 
         private string _ideaTitle;
@@ -58,15 +62,41 @@ namespace IdeaAnchor.ViewModels
 
 		public async Task SaveIdea()
 		{
-			var idea = new Idea
-			{
+            var idea = new Idea
+            {
+                Id = _existingIdea?.Id,
 				Title = IdeaTitle,
 				Content = IdeaContent
 			};
 
+            if (idea.Title.IsNullOrWhiteSpace() && idea.Content.IsNullOrWhiteSpace())
+            {
+                //don't save an empty idea
+
+                if (idea.Id != null)
+                {
+                    //delete existing idea
+
+                    await _db.DeleteItemAsync(idea);
+
+                    _existingIdea = null;
+                }
+
+                IdeaIsSaved = true;
+                return;
+            }
+
 			try
 			{
+                if (IdeaTitle.IsNullOrWhiteSpace())
+                {
+                    IdeaTitle = DefaultTitle;
+                    idea.Title = DefaultTitle;
+                }
+
                 await _db.SaveItemAsync(idea);
+
+                _existingIdea = idea;
 
 				if (idea.Content == IdeaContent && idea.Title == IdeaTitle)
 				{
@@ -79,6 +109,17 @@ namespace IdeaAnchor.ViewModels
 			{
 				Console.WriteLine(e.Message);
 			}
+        }
+
+        public void ApplyQueryAttributes(IDictionary<string, object> query)
+        {
+            if (query != null && query.TryGetValue("ExistingIdea", out var existingIdeaObject))
+            {
+                _existingIdea = existingIdeaObject as Idea;
+
+                IdeaTitle = _existingIdea.Title;
+                IdeaContent = _existingIdea.Content;
+            }
         }
     }
 }

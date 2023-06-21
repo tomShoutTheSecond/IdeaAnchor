@@ -38,10 +38,10 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" ForegroundScale="0.6" Color="#2B2E31" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#fb9062" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\anchor_splash.svg" Color="#fb9062" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -61,9 +61,7 @@
 	  <None Remove="Models\" />
 	  <None Remove="Resources\Images\anchor.svg" />
 	  <None Remove="CommunityToolkit.Maui" />
-	  <None Remove="Resources\Fonts\Font Awesome 6 Free-Regular-400.otf" />
 	  <None Remove="Resources\Fonts\Font Awesome 6 Free-Solid-900.otf" />
-	  <None Remove="ValueConverters\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Pages\" />
@@ -71,7 +69,6 @@
 	  <Folder Include="Helper\" />
 	  <Folder Include="Database\" />
 	  <Folder Include="Models\" />
-	  <Folder Include="ValueConverters\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Pages\MainPage.xaml">
