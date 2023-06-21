@@ -12,7 +12,7 @@
         <ToolbarItem Text="New" Clicked="CreateNewIdea" />
     </ContentPage.ToolbarItems>
 			 
-    <ScrollView>
+    <Grid>
         <VerticalStackLayout 
             Spacing="16" 
             Padding="32,0" 
@@ -33,13 +33,32 @@
                 FontSize="18"
                 HorizontalOptions="Center" />
 
-            <Button 
-                Text="My Ideas"
-                Clicked="GoToMyIdeas"
-                HorizontalOptions="Center" />
-
         </VerticalStackLayout>
-    </ScrollView>
+
+        <Border x:Name="BorderMyIdeas" Margin="16" BackgroundColor="{StaticResource ColorDarkGrey}" StrokeThickness="0" VerticalOptions="Start">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="16" />
+            </Border.StrokeShape>
+
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="GoToMyIdeas"/>
+            </Border.GestureRecognizers>
+
+            <Grid Padding="32">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="My Ideas" FontSize="18" VerticalTextAlignment="Center" />
+
+                <Image Grid.Column="1" Source="chevron_right.png"/>
+
+            </Grid>
+        </Border>
+    </Grid>
  
 </ContentPage>
 

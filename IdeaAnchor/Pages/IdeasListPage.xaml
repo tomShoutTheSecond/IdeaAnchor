@@ -2,35 +2,33 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IdeaAnchor.Pages.IdeasListPage"
-             Title="IdeasListPage">
-    <VerticalStackLayout>
-        <ListView ItemsSource="{Binding Ideas}" RowHeight="96" SeparatorVisibility="None">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="16">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Image Source="anchor.png"
-                                   Aspect="AspectFill"
-                                   HeightRequest="64"
-                                   WidthRequest="64" />
-                            <VerticalStackLayout Grid.Column="1" Margin="16,0,0,0">
-                                <Label 
-                                   Text="{Binding Title}"
-                                   FontAttributes="Bold" />
-                                <Label 
-                                   Text="{Binding Content}"
-                                   FontAttributes="Italic"
-                                   VerticalOptions="End"
-                                   MaxLines="2"/>
-                            </VerticalStackLayout>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </VerticalStackLayout>
+             Title="My Ideas">
+    <ListView ItemsSource="{Binding Ideas}" RowHeight="96" SeparatorVisibility="None">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Padding="16" BackgroundColor="{StaticResource ColorVeryDarkGrey}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="anchor.png"
+                                Aspect="AspectFill"
+                                HeightRequest="64"
+                                WidthRequest="64" />
+                        <VerticalStackLayout Grid.Column="1" Margin="16,0,0,0">
+                            <Label 
+                                Text="{Binding Title}"
+                                FontAttributes="Bold" />
+                            <Label 
+                                Text="{Binding Content}"
+                                FontAttributes="Italic"
+                                VerticalOptions="End"
+                                MaxLines="2"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>

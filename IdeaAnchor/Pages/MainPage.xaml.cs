@@ -1,5 +1,6 @@
 ﻿using IdeaAnchor.Pages;
 using IdeaAnchor.ViewModels;
+using IdeaAnchor.Helper;
 
 namespace IdeaAnchor;
 
@@ -12,9 +13,18 @@ public partial class MainPage : ContentPage
 		BindingContext = vm;
 	}
 
-	private async void GoToMyIdeas(object sender, EventArgs e)
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        BorderMyIdeas.BackgroundColor = ThemeColors.ColorDarkGrey;
+    }
+
+    private async void GoToMyIdeas(object sender, EventArgs e)
 	{
-		await Shell.Current.GoToAsync(nameof(IdeasListPage));
+		BorderMyIdeas.BackgroundColor = ThemeColors.Primary;
+
+        await Shell.Current.GoToAsync(nameof(IdeasListPage));
     }
 
     private async void CreateNewIdea(object sender, EventArgs e)
