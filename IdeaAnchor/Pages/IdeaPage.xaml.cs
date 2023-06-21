@@ -48,4 +48,9 @@ public partial class IdeaPage : ContentPage
     {
         ViewModel.SaveIdea();
     }
+
+    private async void GoBack(System.Object sender, System.EventArgs e)
+    {
+        await Shell.Current.GoToAsync("..");
+    }
 }

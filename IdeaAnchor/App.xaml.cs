@@ -1,5 +1,4 @@
-﻿using Microsoft.Maui.Controls.Compatibility.Platform.Android;
-using Microsoft.Maui.Platform;
+﻿using Microsoft.Maui.Platform;
 
 namespace IdeaAnchor;
 
@@ -34,7 +33,7 @@ public partial class App : Application
                 handler.PlatformView.SetHighlightColor(primaryColor.ToPlatform());
 
                 //remove underline
-                handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Transparent.ToAndroid());
+                handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Transparent.ToPlatform());
             }
 
 #elif IOS || MACCATALYST
