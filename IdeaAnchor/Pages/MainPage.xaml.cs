@@ -18,6 +18,7 @@ public partial class MainPage : ContentPage
         base.OnAppearing();
 
         BorderMyIdeas.BackgroundColor = ThemeColors.ColorDarkGrey;
+        BorderNewIdea.BackgroundColor = ThemeColors.ColorDarkGrey;
     }
 
     private async void GoToMyIdeas(object sender, EventArgs e)
@@ -29,8 +30,9 @@ public partial class MainPage : ContentPage
 
     private async void CreateNewIdea(object sender, EventArgs e)
     {
-		//navigate to idea page
-		await Shell.Current.GoToAsync(nameof(IdeaPage));
+        BorderNewIdea.BackgroundColor = ThemeColors.Primary;
+
+        await Shell.Current.GoToAsync(nameof(IdeaPage));
     }
 }
 

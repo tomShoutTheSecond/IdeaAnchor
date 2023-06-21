@@ -5,7 +5,7 @@
              Title="IdeaPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Save" Clicked="SaveIdea" />
+        <ToolbarItem Text="Save" Clicked="SaveIdea"/>
     </ContentPage.ToolbarItems>
 
     <ScrollView>

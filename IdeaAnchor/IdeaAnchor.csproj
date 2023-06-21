@@ -61,6 +61,8 @@
 	  <None Remove="Models\" />
 	  <None Remove="Resources\Images\anchor.svg" />
 	  <None Remove="CommunityToolkit.Maui" />
+	  <None Remove="Resources\Fonts\Font Awesome 6 Free-Regular-400.otf" />
+	  <None Remove="Resources\Fonts\Font Awesome 6 Free-Solid-900.otf" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Pages\" />
@@ -90,5 +92,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Helper\ThemeColors.cs" />
+	  <BundleResource Include="Resources\Fonts\Font Awesome 6 Free-Solid-900.otf" />
 	</ItemGroup>
 </Project>

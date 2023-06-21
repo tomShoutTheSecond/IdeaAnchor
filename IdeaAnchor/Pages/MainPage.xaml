@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="IdeaAnchor.MainPage">
+             x:Class="IdeaAnchor.MainPage"
+             Shell.NavBarIsVisible="false">
     
     <ContentPage.Behaviors>
         <toolkit:StatusBarBehavior StatusBarColor="{StaticResource ColorVeryDarkGrey}" StatusBarStyle="LightContent" />
@@ -12,8 +13,15 @@
         <ToolbarItem Text="New" Clicked="CreateNewIdea" />
     </ContentPage.ToolbarItems>
 			 
-    <Grid>
-        <VerticalStackLayout 
+    <Grid VerticalOptions="Fill">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <VerticalStackLayout
             Spacing="16" 
             Padding="32,0" 
             VerticalOptions="Center">
@@ -35,7 +43,33 @@
 
         </VerticalStackLayout>
 
-        <Border x:Name="BorderMyIdeas" Margin="16" BackgroundColor="{StaticResource ColorDarkGrey}" StrokeThickness="0" VerticalOptions="Start">
+        <!-- New Idea Button -->
+        <Border Grid.Row="1" x:Name="BorderNewIdea" Margin="16" BackgroundColor="{StaticResource ColorDarkGrey}" StrokeThickness="0" VerticalOptions="Start">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="16" />
+            </Border.StrokeShape>
+
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="CreateNewIdea"/>
+            </Border.GestureRecognizers>
+
+            <Grid Padding="32">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="New Idea" FontSize="18" VerticalTextAlignment="Center" />
+
+                <Label Grid.Column="1" Text="&#xf067;" FontFamily="FontAwesome" FontSize="18" WidthRequest="24" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+            </Grid>
+        </Border>
+
+        <!-- My Ideas Button -->
+        <Border Grid.Row="2" x:Name="BorderMyIdeas" Margin="16, 0, 16, 16" BackgroundColor="{StaticResource ColorDarkGrey}" StrokeThickness="0" VerticalOptions="Start">
 
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="16" />
@@ -54,11 +88,12 @@
 
                 <Label Text="My Ideas" FontSize="18" VerticalTextAlignment="Center" />
 
-                <Image Grid.Column="1" Source="chevron_right.png"/>
+                <Label Grid.Column="1" Text="&#xf0c9;" FontFamily="FontAwesome" FontSize="18" WidthRequest="24" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
 
             </Grid>
         </Border>
+
     </Grid>
- 
+        
 </ContentPage>
 
