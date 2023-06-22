@@ -26,9 +26,12 @@ public partial class IdeasListPage : ContentPage
         if (e.SelectedItem == null)
             return;
 
-        var selectedIdea = (e.SelectedItem as IdeaItemViewModel).Idea;
+        var selectedIdea = (e.SelectedItem as IdeaItemViewModel);
+        selectedIdea.IsSelected = true;
 
-        var navigationParameter = new Dictionary<string, object> { { "ExistingIdea", selectedIdea } };
+        _vm.Ideas = new List<IdeaItemViewModel>(_vm.Ideas);
+
+        var navigationParameter = new Dictionary<string, object> { { "ExistingIdea", selectedIdea.Idea } };
         await Shell.Current.GoToAsync(nameof(IdeaPage), navigationParameter);
 
         //clear selection so the tap event will work next time

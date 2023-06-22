@@ -1,9 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="IdeaAnchor.Pages.IdeasListPage"
              Title="My Ideas"
              Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:BoolToObjectConverter x:Key="BoolToObjectConverter" TrueObject="{StaticResource Primary}" FalseObject="{StaticResource ColorDarkGrey}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <Grid VerticalOptions="Fill">
         <Grid.RowDefinitions>
@@ -45,7 +52,7 @@
 
                         <VerticalStackLayout BackgroundColor="{StaticResource ColorVeryDarkGrey}">
 
-                            <Border x:Name="BorderMyIdeas" Margin="16, 16, 16, 16" BackgroundColor="{StaticResource ColorDarkGrey}" StrokeThickness="0" VerticalOptions="Start">
+                            <Border x:Name="BorderMyIdeas" Margin="16, 16, 16, 16" BackgroundColor="{Binding IsSelected, Converter={StaticResource BoolToObjectConverter}}" StrokeThickness="0" VerticalOptions="Start">
 
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="16" />
