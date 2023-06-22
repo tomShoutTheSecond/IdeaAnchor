@@ -34,7 +34,10 @@ public partial class App : Application
             handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Transparent.ToPlatform());
 
 #elif IOS || MACCATALYST
-         
+
+            //set cursor color
+            handler.PlatformView.TintColor = ThemeColors.Primary.ToPlatform();
+
 #elif WINDOWS
       
 #endif
@@ -65,6 +68,9 @@ public partial class App : Application
             }
 
 #elif IOS || MACCATALYST
+
+            //set cursor color
+            handler.PlatformView.TintColor = ThemeColors.Primary.ToPlatform();
          
 #elif WINDOWS
       
