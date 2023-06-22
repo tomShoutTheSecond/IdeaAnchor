@@ -12,7 +12,7 @@ namespace IdeaAnchor.ViewModels
 
         private readonly IdeaDatabase _db;
 
-        private Idea _existingIdea;
+        public Idea ExistingIdea { get; set; }
 
         public IdeaViewModel(IdeaDatabase db)
 		{
@@ -62,9 +62,12 @@ namespace IdeaAnchor.ViewModels
 
 		public async Task SaveIdea()
 		{
+            IdeaTitle = IdeaTitle == null ? null : IdeaTitle.Trim();
+            IdeaContent = IdeaContent == null ? null : IdeaContent.Trim();
+
             var idea = new Idea
             {
-                Id = _existingIdea?.Id,
+                Id = ExistingIdea?.Id,
 				Title = IdeaTitle,
 				Content = IdeaContent
 			};
@@ -79,7 +82,7 @@ namespace IdeaAnchor.ViewModels
 
                     await _db.DeleteItemAsync(idea);
 
-                    _existingIdea = null;
+                    ExistingIdea = null;
                 }
 
                 IdeaIsSaved = true;
@@ -96,7 +99,7 @@ namespace IdeaAnchor.ViewModels
 
                 await _db.SaveItemAsync(idea);
 
-                _existingIdea = idea;
+                ExistingIdea = idea;
 
 				if (idea.Content == IdeaContent && idea.Title == IdeaTitle)
 				{
@@ -115,11 +118,21 @@ namespace IdeaAnchor.ViewModels
         {
             if (query != null && query.TryGetValue("ExistingIdea", out var existingIdeaObject))
             {
-                _existingIdea = existingIdeaObject as Idea;
+                ExistingIdea = existingIdeaObject as Idea;
 
-                IdeaTitle = _existingIdea.Title;
-                IdeaContent = _existingIdea.Content;
+                IdeaTitle = ExistingIdea.Title;
+                IdeaContent = ExistingIdea.Content;
+
+                IdeaIsSaved = true;
             }
+        }
+
+        public async Task DeleteIdea()
+        {
+            if (ExistingIdea == null)
+                return;
+
+            await _db.DeleteItemAsync(ExistingIdea);
         }
     }
 }

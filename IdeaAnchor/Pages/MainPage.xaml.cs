@@ -1,7 +1,6 @@
 ﻿using IdeaAnchor.Pages;
 using IdeaAnchor.ViewModels;
 using IdeaAnchor.Helper;
-using Java.Lang;
 
 namespace IdeaAnchor;
 

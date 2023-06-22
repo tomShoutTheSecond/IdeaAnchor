@@ -1,5 +1,5 @@
 ﻿using IdeaAnchor.ViewModels;
-using Java.Lang;
+using IdeaAnchor.ItemViewModels;
 
 namespace IdeaAnchor.Pages;
 
@@ -26,10 +26,17 @@ public partial class IdeasListPage : ContentPage
         if (e.SelectedItem == null)
             return;
 
-        var navigationParameter = new Dictionary<string, object> { { "ExistingIdea", e.SelectedItem } };
+        var selectedIdea = (e.SelectedItem as IdeaItemViewModel).Idea;
+
+        var navigationParameter = new Dictionary<string, object> { { "ExistingIdea", selectedIdea } };
         await Shell.Current.GoToAsync(nameof(IdeaPage), navigationParameter);
 
         //clear selection so the tap event will work next time
         ((ListView)sender).SelectedItem = null;
+    }
+
+    private async void GoBack(System.Object sender, System.EventArgs e)
+    {
+        await Shell.Current.GoToAsync("..");
     }
 }

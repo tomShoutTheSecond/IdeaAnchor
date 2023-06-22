@@ -1,13 +1,14 @@
 ﻿using System;
 using IdeaAnchor.Database;
 using IdeaAnchor.Models;
+using IdeaAnchor.ItemViewModels;
 
 namespace IdeaAnchor.ViewModels
 {
     public class IdeasListViewModel : BindableObject
     {
-        private List<Idea> _ideas;
-        public List<Idea> Ideas
+        private List<IdeaItemViewModel> _ideas;
+        public List<IdeaItemViewModel> Ideas
         {
             get => _ideas;
             set
@@ -31,7 +32,8 @@ namespace IdeaAnchor.ViewModels
         {
             try
             {
-                Ideas = await _db.GetIdeasAsync();
+                var ideaModels = await _db.GetIdeasAsync();
+                Ideas = ideaModels.Select(i => new IdeaItemViewModel { Idea = i }).ToList();
             }
             catch(Exception e)
             {

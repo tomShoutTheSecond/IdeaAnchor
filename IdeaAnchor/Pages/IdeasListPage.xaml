@@ -2,33 +2,87 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IdeaAnchor.Pages.IdeasListPage"
-             Title="My Ideas">
-    <ListView ItemsSource="{Binding Ideas}" ItemSelected="ListView_ItemSelected" RowHeight="96" SeparatorVisibility="None" BackgroundColor="{StaticResource ColorVeryDarkGrey}">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <Grid Padding="16" BackgroundColor="{StaticResource ColorVeryDarkGrey}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Image Source="anchor.png"
-                                Aspect="AspectFill"
-                                HeightRequest="64"
-                                WidthRequest="64" />
-                        <VerticalStackLayout Grid.Column="1" Margin="16,0,0,0">
-                            <Label 
-                                Text="{Binding Title}"
-                                FontAttributes="Bold" />
-                            <Label 
-                                Text="{Binding Content}"
-                                FontAttributes="Italic"
-                                VerticalOptions="End"
-                                MaxLines="2"/>
+             Title="My Ideas"
+             Shell.NavBarIsVisible="False">
+
+    <Grid VerticalOptions="Fill">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Margin="16" HorizontalOptions="Fill">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!-- Back Button -->
+            <StackLayout HorizontalOptions="Start" VerticalOptions="Center" Margin="0, 0, 16, 0">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="GoBack"/>
+                </StackLayout.GestureRecognizers>
+                <Label Text="&#xf104;" IsVisible="{Binding IdeaIsSaved}" FontSize="24" FontFamily="FontAwesome" HeightRequest="24" WidthRequest="24" HorizontalOptions="Start" VerticalOptions="Fill" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+            </StackLayout>
+
+            <Label Grid.Column="1" Text="My Ideas" FontSize="18" HorizontalTextAlignment="Center"/>
+
+            <!-- Delete Button -->
+            <StackLayout Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" Margin="16, 0, 0, 0">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer />
+                </StackLayout.GestureRecognizers>
+                <Label Text="&#xf104;" Opacity="0" FontSize="24" FontFamily="FontAwesome" HeightRequest="24" WidthRequest="24" HorizontalOptions="Start" VerticalOptions="Fill" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+            </StackLayout>
+
+        </Grid>
+
+        <ListView Grid.Row="1" ItemsSource="{Binding Ideas}" ItemSelected="ListView_ItemSelected" RowHeight="112" SeparatorVisibility="None" BackgroundColor="{StaticResource ColorVeryDarkGrey}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+
+                        <VerticalStackLayout BackgroundColor="{StaticResource ColorVeryDarkGrey}">
+
+                            <Border x:Name="BorderMyIdeas" Margin="16, 16, 16, 16" BackgroundColor="{StaticResource ColorDarkGrey}" StrokeThickness="0" VerticalOptions="Start">
+
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="16" />
+                                </Border.StrokeShape>
+
+                                <Grid Padding="16">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                
+                                    <VerticalStackLayout Margin="0">
+                                        <Label 
+                                            Text="{Binding Idea.Title}"
+                                            FontSize="18"
+                                            FontAttributes="Bold" />
+                                        <Label 
+                                            Text="{Binding Idea.Content}"
+                                            FontAttributes="Italic"
+                                            VerticalOptions="End"
+                                            MaxLines="2"/>
+                                    </VerticalStackLayout>
+
+                                    <Image Grid.Column="1" Source="anchor.png"
+                                        Aspect="AspectFill"
+                                        HeightRequest="64"
+                                        WidthRequest="64" />
+                                </Grid>
+
+                            </Border>
+
                         </VerticalStackLayout>
-                    </Grid>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+                        
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
 </ContentPage>

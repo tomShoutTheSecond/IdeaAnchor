@@ -62,6 +62,7 @@
 	  <None Remove="Resources\Images\anchor.svg" />
 	  <None Remove="CommunityToolkit.Maui" />
 	  <None Remove="Resources\Fonts\Font Awesome 6 Free-Solid-900.otf" />
+	  <None Remove="ItemViewModels\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Pages\" />
@@ -69,6 +70,7 @@
 	  <Folder Include="Helper\" />
 	  <Folder Include="Database\" />
 	  <Folder Include="Models\" />
+	  <Folder Include="ItemViewModels\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Pages\MainPage.xaml">

@@ -2,12 +2,13 @@
 using IdeaAnchor.Helper;
 using IdeaAnchor.ViewModels;
 using Microsoft.Maui.Platform;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace IdeaAnchor.Pages;
 
 public partial class IdeaPage : ContentPage
 {
-    public IdeaViewModel ViewModel => BindingContext as IdeaViewModel;
+    private IdeaViewModel _vm => BindingContext as IdeaViewModel;
 
 	public IdeaPage(IdeaViewModel vm)
 	{
@@ -22,14 +23,26 @@ public partial class IdeaPage : ContentPage
     {
         await Task.Delay(50);
 
-        FocusEditor();
+        //only focus editor for new notes
+        if (_vm.ExistingIdea == null)
+            FocusEditor();
     }
 
     private void FocusEditor()
     {
-        EditorMain.Focus();
+        try
+        {
+            EditorMain.Focus();
 
-        KeyboardHelper.KeyboardVisibility(visible: true);
+            if (EditorMain.Text != null)
+                EditorMain.CursorPosition = EditorMain.Text.Length;
+
+            KeyboardHelper.KeyboardVisibility(visible: true);
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
     }
 
     private void Container_Tapped(System.Object sender, System.EventArgs e)
@@ -37,20 +50,33 @@ public partial class IdeaPage : ContentPage
         FocusEditor();
     }
 
-    protected override bool OnBackButtonPressed()
-    {
-        ViewModel.SaveIdea();
-
-        return base.OnBackButtonPressed();
-    }
-
     private void SaveIdea(System.Object sender, System.EventArgs e)
     {
-        ViewModel.SaveIdea();
+        _ = _vm.SaveIdea();
     }
 
     private async void GoBack(System.Object sender, System.EventArgs e)
     {
         await Shell.Current.GoToAsync("..");
+    }
+
+    private async void DeleteIdea(System.Object sender, System.EventArgs e)
+    {
+        var result = await DisplayAlert("", "Are you sure you want to delete this idea?", "Yes", "No");
+        if (!result)
+            return;
+
+        await _vm.DeleteIdea();
+
+        GoBack(null, null);
+    }
+
+    private async void ShareIdea(System.Object sender, System.EventArgs e)
+    {
+        await Share.Default.RequestAsync(new ShareTextRequest
+        {
+            Title = _vm.IdeaTitle,
+            Text = _vm.IdeaContent,
+        });
     }
 }

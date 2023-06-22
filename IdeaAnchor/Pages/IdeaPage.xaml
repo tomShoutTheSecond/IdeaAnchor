@@ -2,23 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              x:Class="IdeaAnchor.Pages.IdeaPage"
              Title=""
              Shell.NavBarIsVisible="false">
-    <!--
-    <Shell.BackButtonBehavior>
-        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
-    </Shell.BackButtonBehavior>
-
-    <Shell.TitleView HorizontalOptions="Fill" VerticalOptions="Center">
-        <StackLayout HorizontalOptions="Start" VerticalOptions="Center" Margin="0, 0, 16, 0">
-            <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer Tapped="SaveIdea"/>
-            </StackLayout.GestureRecognizers>
-            <Label Text="&#xf00c;" TextColor="{StaticResource Primary}" IsVisible="{Binding IsIdeaSaved}" FontSize="24" FontFamily="FontAwesome" HeightRequest="24" WidthRequest="24" HorizontalOptions="Start" VerticalOptions="Fill" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-        </StackLayout>
-    </Shell.TitleView>
-    -->
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -32,9 +19,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Margin="16">
+        <Grid Margin="16" HorizontalOptions="Fill">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
@@ -54,6 +43,22 @@
                 </StackLayout.GestureRecognizers>
                 <Label Text="&#xf104;" IsVisible="{Binding IdeaIsSaved}" FontSize="24" FontFamily="FontAwesome" HeightRequest="24" WidthRequest="24" HorizontalOptions="Start" VerticalOptions="Fill" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
             </StackLayout>
+
+            <!-- Delete Button -->
+            <StackLayout Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" Margin="0, 0, 24, 0">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="DeleteIdea"/>
+                </StackLayout.GestureRecognizers>
+                <Label Text="&#xf2ed;" FontSize="24" FontFamily="FontAwesome" HeightRequest="24" WidthRequest="24" HorizontalOptions="Start" VerticalOptions="Fill" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+            </StackLayout>
+
+            <!-- Share Button -->
+            <StackLayout Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" Margin="0, 0, 0, 0">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ShareIdea"/>
+                </StackLayout.GestureRecognizers>
+                <Label Text="&#xf1e0;" FontSize="24" FontFamily="FontAwesome" HeightRequest="24" WidthRequest="24" HorizontalOptions="Start" VerticalOptions="Fill" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+            </StackLayout>
         </Grid>
 
         <ScrollView Grid.Row="1">
@@ -62,7 +67,7 @@
                     <TapGestureRecognizer Tapped="Container_Tapped"/>
                 </VerticalStackLayout.GestureRecognizers>
 
-                <Entry Text="{Binding IdeaTitle}" FontSize="36" Placeholder="Title" TextColor="White" Margin="8, 0, 8, 0"/>
+                <Entry Text="{Binding IdeaTitle}" ios:Entry.CursorColor="{StaticResource Primary}" FontSize="36" Placeholder="Title" TextColor="White" Margin="8, 0, 8, 0"/>
 
                 <!-- Main Editor -->
                 <Editor x:Name="EditorMain" Text="{Binding IdeaContent}" Placeholder="Start writing" AutoSize="TextChanges" VerticalOptions="FillAndExpand" TextColor="White" Margin="8, 0, 8, 8"/>
