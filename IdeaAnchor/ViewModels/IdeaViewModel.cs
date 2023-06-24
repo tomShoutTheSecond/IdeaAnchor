@@ -68,9 +68,10 @@ namespace IdeaAnchor.ViewModels
             var idea = new Idea
             {
                 Id = ExistingIdea?.Id,
-				Title = IdeaTitle,
-				Content = IdeaContent
-			};
+                Title = IdeaTitle,
+                Content = IdeaContent,
+                LastUpdatedTime = TimeHelper.GetTimeStamp()
+            };
 
             if (idea.Title.IsNullOrWhiteSpace() && idea.Content.IsNullOrWhiteSpace())
             {
@@ -80,7 +81,7 @@ namespace IdeaAnchor.ViewModels
                 {
                     //delete existing idea
 
-                    await _db.DeleteItemAsync(idea);
+                    await _db.DeleteIdeaAsync(idea);
 
                     ExistingIdea = null;
                 }
@@ -97,7 +98,7 @@ namespace IdeaAnchor.ViewModels
                     idea.Title = DefaultTitle;
                 }
 
-                await _db.SaveItemAsync(idea);
+                await _db.SaveIdeaAsync(idea);
 
                 ExistingIdea = idea;
 
@@ -132,7 +133,7 @@ namespace IdeaAnchor.ViewModels
             if (ExistingIdea == null)
                 return;
 
-            await _db.DeleteItemAsync(ExistingIdea);
+            await _db.DeleteIdeaAsync(ExistingIdea);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using IdeaAnchor.Helper;
 using IdeaAnchor.Models;
 using SQLite;
 
@@ -29,13 +30,14 @@ namespace IdeaAnchor.Database
             return await _database.Table<Idea>().Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task<int> SaveItemAsync(Idea item)
+        public async Task<int> SaveIdeaAsync(Idea item)
         {
             await Init();
             if (item.Id == null)
             {
                 //new idea
                 item.Id = Guid.NewGuid().ToString();
+                item.CreatedTime = TimeHelper.GetTimeStamp();
                 return await _database.InsertAsync(item);
             }
 
@@ -43,7 +45,7 @@ namespace IdeaAnchor.Database
             return await _database.UpdateAsync(item);
         }
 
-        public async Task<int> DeleteItemAsync(Idea item)
+        public async Task<int> DeleteIdeaAsync(Idea item)
         {
             await Init();
             return await _database.DeleteAsync(item);
