@@ -15,11 +15,11 @@
 		<ApplicationTitle>IdeaAnchor</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.ideaanchor</ApplicationId>
+		<ApplicationId>ideaanchor.ideaanchor</ApplicationId>
 		<ApplicationIdGuid>c418c135-403e-47cb-bc55-a54df2f8a078</ApplicationIdGuid>
 
 		<!-- Versions -->
-		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
