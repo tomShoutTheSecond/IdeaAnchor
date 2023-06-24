@@ -60,7 +60,7 @@
                                     <RoundRectangle CornerRadius="16" />
                                 </Border.StrokeShape>
 
-                                <Grid Padding="16">
+                                <Grid Padding="16" HeightRequest="96">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />

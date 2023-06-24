@@ -16,7 +16,7 @@ namespace IdeaAnchor.Helper
 			return time.ToShortDateString();
 		}
 
-		public static DateTime GetDateTime(string timestamp)
+		public static DateTime ToDateTime(this string timestamp)
 		{
             return DateTime.Parse(timestamp, null, System.Globalization.DateTimeStyles.RoundtripKind);
         }

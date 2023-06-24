@@ -8,7 +8,7 @@ namespace IdeaAnchor.ValueConverters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return TimeHelper.GetReadableTime(TimeHelper.GetDateTime((string)value));
+            return TimeHelper.GetReadableTime(((string)value).ToDateTime());
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

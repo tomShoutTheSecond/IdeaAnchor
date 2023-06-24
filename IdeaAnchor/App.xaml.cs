@@ -37,6 +37,7 @@ public partial class App : Application
 
             //set cursor color
             handler.PlatformView.TintColor = ThemeColors.Primary.ToPlatform();
+            handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
 
 #elif WINDOWS
       
