@@ -1,2 +1,2 @@
 # IdeaAnchor
-Android &amp; iOS notes app built with .NET Maui
+Android &amp; iOS notes app built with .NET MAUI
