@@ -11,6 +11,7 @@ public partial class AppShell : Shell
 
         Routing.RegisterRoute(nameof(IdeaPage), typeof(IdeaPage));
         Routing.RegisterRoute(nameof(IdeasListPage), typeof(IdeasListPage));
+        Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
     }
 }
 

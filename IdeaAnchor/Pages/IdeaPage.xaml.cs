@@ -89,6 +89,6 @@ public partial class IdeaPage : ContentPage
 
     private void AnimateSavedLabel()
     {
-        LabelSaved.Animate(LabelSavedAnimationKey, new Animation((progress) => LabelSaved.Opacity = 1 - progress), rate: 16, length: 1000, Easing.SinIn);
+        LabelSaved.Animate(LabelSavedAnimationKey, new Animation((progress) => LabelSaved.Opacity = 1 - progress), rate: 16, length: 2000, Easing.SinIn);
     }
 }

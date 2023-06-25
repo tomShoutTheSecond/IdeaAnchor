@@ -59,7 +59,7 @@
 
                         <VerticalStackLayout BackgroundColor="{StaticResource ColorVeryDarkGrey}">
 
-                            <Border x:Name="BorderMyIdeas" Margin="16, 16, 16, 16" BackgroundColor="{Binding IsSelected, Converter={StaticResource HighlightColorConverter}}" StrokeThickness="0" VerticalOptions="Start">
+                            <Border Margin="16, 16, 16, 16" BackgroundColor="{Binding IsSelected, Converter={StaticResource HighlightColorConverter}}" StrokeThickness="0" VerticalOptions="Start">
 
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="16" />

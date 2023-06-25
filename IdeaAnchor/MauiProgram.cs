@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Maui;
 using IdeaAnchor.Database;
+using IdeaAnchor.Services;
 using IdeaAnchor.Pages;
 using IdeaAnchor.ViewModels;
+using IdeaAnchor.MenuProviders;
 
 namespace IdeaAnchor;
 
@@ -27,8 +29,12 @@ public static class MauiProgram
         builder.Services.AddTransient<IdeaViewModel>();
 		builder.Services.AddTransient<IdeasListPage>();
         builder.Services.AddTransient<IdeasListViewModel>();
+        builder.Services.AddTransient<SettingsPage>();
+        builder.Services.AddTransient<SettingsViewModel>();
 
         builder.Services.AddSingleton<IdeaDatabase>();
+        builder.Services.AddSingleton<ImportExportService>();
+        builder.Services.AddSingleton<SettingsMenuProvider>();
 
         return builder.Build();
 	}

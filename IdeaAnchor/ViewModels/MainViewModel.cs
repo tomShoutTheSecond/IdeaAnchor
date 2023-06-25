@@ -39,6 +39,8 @@ namespace IdeaAnchor.ViewModels
 
         public ICommand CreateNewIdeaCommand => new AsyncRelayCommand(CreateNewIdea);
 
+        public ICommand GoToSettingsCommand => new AsyncRelayCommand(GoToSettings);
+
         public Color MyIdeasButtonBackgroundColor => IsMyIdeasSelected ? ThemeColors.Primary : ThemeColors.ColorDarkGrey;
 
         public Color CreateIdeaButtonBackgroundColor => IsNewIdeaSelected ? ThemeColors.Primary : ThemeColors.ColorDarkGrey;
@@ -61,6 +63,11 @@ namespace IdeaAnchor.ViewModels
             IsNewIdeaSelected = true;
 
             await Shell.Current.GoToAsync(nameof(IdeaPage));
+        }
+
+        private async Task GoToSettings()
+        {
+            await Shell.Current.GoToAsync(nameof(SettingsPage));
         }
     }
 }

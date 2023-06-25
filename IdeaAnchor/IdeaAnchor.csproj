@@ -65,6 +65,9 @@
 	  <None Remove="ItemViewModels\" />
 	  <None Remove="ValueConverters\" />
 	  <None Remove="CommunityToolkit.Mvvm" />
+	  <None Remove="ServiceStack.Text" />
+	  <None Remove="MenuProviders\" />
+	  <None Remove="Services\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Pages\" />
@@ -74,6 +77,8 @@
 	  <Folder Include="Models\" />
 	  <Folder Include="ItemViewModels\" />
 	  <Folder Include="ValueConverters\" />
+	  <Folder Include="MenuProviders\" />
+	  <Folder Include="Services\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Pages\MainPage.xaml">
@@ -85,12 +90,16 @@
 	  <MauiXaml Update="Pages\IdeasListPage.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\SettingsPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 	  <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.5" />
 	  <PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
+	  <PackageReference Include="ServiceStack.Text" Version="6.9.0" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Remove="Helper\Colors.cs" />
