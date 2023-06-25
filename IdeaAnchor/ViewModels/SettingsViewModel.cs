@@ -22,8 +22,32 @@ namespace IdeaAnchor.ViewModels
 
 		public SettingsViewModel(SettingsMenuProvider settingsMenuProvider)
 		{
-			SettingsMenu = settingsMenuProvider.GetMenu();
+			SettingsMenu = settingsMenuProvider.GetMenu(MenuItemSelected);
 		}
+
+		public void OnAppearing()
+		{
+			foreach(var item in SettingsMenu)
+			{
+				item.IsSelected = false;
+			}
+
+            OnPropertyChanged(nameof(SettingsMenu));
+        }
+
+        private void MenuItemSelected(int index, bool isSelected)
+		{
+			try
+			{
+				SettingsMenu[index].IsSelected = isSelected;
+
+                OnPropertyChanged(nameof(SettingsMenu));
+            }
+            catch
+			{
+
+			}
+        }
 	}
 }
 

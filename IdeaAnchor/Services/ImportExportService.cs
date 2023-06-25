@@ -52,12 +52,9 @@ namespace IdeaAnchor.Services
 
                 //remove the ID field as it's not required
                 //we will create new IDs for the imported files when importing
-                foreach (var idea in ideas)
-                {
-                    idea.Id = null;
-                }
+                var csvIdeas = ideas.Select(i => ToCsvIdea(i));
 
-                var csv = ideas.ToCsv();
+                var csv = csvIdeas.ToCsv();
 
                 await SaveFile(csv);
 
@@ -90,7 +87,7 @@ namespace IdeaAnchor.Services
                 new Dictionary<DevicePlatform, IEnumerable<string>>
                 {
                     { DevicePlatform.iOS, new[] { "public.comma-separated-values-text" } }, // UTType values
-                    { DevicePlatform.Android, new[] { "text/csv" } }, // MIME type
+                    { DevicePlatform.Android, new[] { "text/comma-separated-values" } }, // MIME type
                     { DevicePlatform.WinUI, new[] { ".csv" } }, // file extension
                     { DevicePlatform.Tizen, new[] { "*/*" } },
                     { DevicePlatform.macOS, new[] { "public.comma-separated-values-text" } }, // UTType values
@@ -110,6 +107,17 @@ namespace IdeaAnchor.Services
             using var stream = new MemoryStream(Encoding.Default.GetBytes(csv));
             var result = await FileSaver.SaveAsync("IdeaAnchor_Export.csv", stream, CancellationToken.None);
             result.EnsureSuccess();
+        }
+
+        private CsvIdea ToCsvIdea(Idea idea)
+        {
+            return new CsvIdea
+            {
+                Title = idea.Title,
+                Content = idea.Content,
+                CreatedTime = idea.CreatedTime,
+                LastUpdatedTime = idea.LastUpdatedTime
+            };
         }
     }
 }
