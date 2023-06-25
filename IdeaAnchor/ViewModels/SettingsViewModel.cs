@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 using IdeaAnchor.MenuProviders;
 
 namespace IdeaAnchor.ViewModels
@@ -15,6 +17,8 @@ namespace IdeaAnchor.ViewModels
 				OnPropertyChanged(nameof(SettingsMenu));
 			}
 		}
+
+		public ICommand BackCommand => new AsyncRelayCommand(() => Shell.Current.GoToAsync(".."));
 
 		public SettingsViewModel(SettingsMenuProvider settingsMenuProvider)
 		{

@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="IdeaAnchor.Pages.SettingsPage"
-             Title="Settings">
+             Title="Settings"
+             Shell.NavBarIsVisible="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -11,42 +12,61 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ListView Grid.Row="1" ItemsSource="{Binding SettingsMenu}" RowHeight="112" SeparatorVisibility="None" BackgroundColor="{StaticResource ColorVeryDarkGrey}">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
+    <VerticalStackLayout VerticalOptions="Fill">
+        <Grid HorizontalOptions="Fill" HeightRequest="56">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-                    <VerticalStackLayout BackgroundColor="{StaticResource ColorVeryDarkGrey}">
+            <!-- Back Button -->
+            <StackLayout HorizontalOptions="Start" VerticalOptions="Center" Padding="16">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                </StackLayout.GestureRecognizers>
+                <Label Text="&#xf104;" FontSize="24" FontFamily="FontAwesome" HeightRequest="24" WidthRequest="24" HorizontalOptions="Start" VerticalOptions="Fill" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+            </StackLayout>
 
-                        <Border x:Name="BorderMyIdeas" Margin="16, 16, 16, 16" BackgroundColor="{Binding IsSelected, Converter={StaticResource HighlightColorConverter}}" StrokeThickness="0" VerticalOptions="Start">
+        </Grid>
 
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="16" />
-                            </Border.StrokeShape>
+        <ListView Grid.Row="1" ItemsSource="{Binding SettingsMenu}" RowHeight="112" SeparatorVisibility="None" BackgroundColor="{StaticResource ColorVeryDarkGrey}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
 
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Command}"/>
-                            </Border.GestureRecognizers>
+                        <VerticalStackLayout BackgroundColor="{StaticResource ColorVeryDarkGrey}">
 
-                            <Grid Padding="32">
+                            <Border x:Name="BorderMyIdeas" Margin="16, 16, 16, 16" BackgroundColor="{Binding IsSelected, Converter={StaticResource HighlightColorConverter}}" StrokeThickness="0" VerticalOptions="Start">
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="16" />
+                                </Border.StrokeShape>
 
-                                <Label Text="{Binding Name}" FontSize="18" VerticalTextAlignment="Center" />
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Command}"/>
+                                </Border.GestureRecognizers>
 
-                                <Label Grid.Column="1" Text="{Binding Icon}" FontFamily="FontAwesome" FontSize="18" WidthRequest="24" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                <Grid Padding="32">
 
-                            </Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
 
-                        </Border>
+                                    <Label Text="{Binding Name}" FontSize="18" VerticalTextAlignment="Center" />
 
-                    </VerticalStackLayout>
+                                    <Label Grid.Column="1" Text="{Binding Icon}" FontFamily="FontAwesome" FontSize="18" WidthRequest="24" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+                                </Grid>
+
+                            </Border>
+
+                        </VerticalStackLayout>
                         
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
 </ContentPage>
