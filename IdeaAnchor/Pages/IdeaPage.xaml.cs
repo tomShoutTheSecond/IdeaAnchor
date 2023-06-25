@@ -84,8 +84,8 @@ public partial class IdeaPage : ContentPage
     {
         await Share.Default.RequestAsync(new ShareTextRequest
         {
-            Title = _vm.IdeaTitle,
-            Text = _vm.IdeaContent,
+            Title = "Share my idea",
+            Text = $"{_vm.IdeaTitle}\n\n{_vm.IdeaContent}"
         });
     }
 }
