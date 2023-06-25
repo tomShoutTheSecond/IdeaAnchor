@@ -9,6 +9,8 @@ namespace IdeaAnchor.Pages;
 
 public partial class IdeaPage : ContentPage
 {
+    private const string LabelSavedAnimationKey = "LabelSavedAnimation";
+
     private IdeaViewModel _vm => BindingContext as IdeaViewModel;
 
 	public IdeaPage(IdeaViewModel vm)
@@ -22,6 +24,8 @@ public partial class IdeaPage : ContentPage
 
     private async void Init()
     {
+        _vm.SavedEvent += (s, e) => AnimateSavedLabel();
+
         SetTitleAlignment();
 
         await Task.Delay(50);
@@ -81,5 +85,10 @@ public partial class IdeaPage : ContentPage
             Title = "Share my idea",
             Text = $"{_vm.IdeaTitle}\n\n{_vm.IdeaContent}"
         });
+    }
+
+    private void AnimateSavedLabel()
+    {
+        LabelSaved.Animate(LabelSavedAnimationKey, new Animation((progress) => LabelSaved.Opacity = 1 - progress), rate: 16, length: 1000, Easing.SinIn);
     }
 }

@@ -21,6 +21,8 @@ namespace IdeaAnchor.ViewModels
 
         public ICommand SaveOrGoBackCommand => new AsyncRelayCommand(SaveOrGoBack);
 
+        public EventHandler SavedEvent { get; set; }
+
         public IdeaViewModel(IdeaDatabase db)
 		{
 			_db = db;
@@ -133,6 +135,8 @@ namespace IdeaAnchor.ViewModels
 					//user has not changed the text since the save operation was invoked
 
 					IdeaIsSaved = true;
+
+                    SavedEvent?.Invoke(this, EventArgs.Empty);
 				}
             }
 			catch(Exception e)

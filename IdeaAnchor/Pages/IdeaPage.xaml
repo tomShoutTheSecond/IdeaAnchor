@@ -30,6 +30,8 @@
                 <Label Text="{Binding SaveButtonIcon}" TextColor="{Binding SaveButtonColor}" FontSize="24" FontFamily="FontAwesome" HeightRequest="24" WidthRequest="24" HorizontalOptions="Start" VerticalOptions="Fill" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
             </StackLayout>
 
+            <Label x:Name="LabelSaved" Grid.Column="1" Text="Saved" Opacity="0" VerticalOptions="Center"/>
+
             <!-- Delete Button -->
             <StackLayout Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" Padding="16">
                 <StackLayout.GestureRecognizers>
