@@ -52,7 +52,7 @@
                 HorizontalOptions="Center" />
 
             <Label 
-                Text="Built with .NET Maui"
+                Text="Built with .NET MAUI"
                 FontSize="18"
                 HorizontalOptions="Center" />
 

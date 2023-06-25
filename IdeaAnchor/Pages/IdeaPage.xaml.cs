@@ -28,7 +28,8 @@ public partial class IdeaPage : ContentPage
 
         SetTitleAlignment();
 
-        await Task.Delay(50);
+        var openKeyboardDelay = DeviceInfo.Platform == DevicePlatform.iOS ? 500 : 50;
+        await Task.Delay(openKeyboardDelay);
 
         //only focus editor for new notes
         if (_vm.ExistingIdea == null)
