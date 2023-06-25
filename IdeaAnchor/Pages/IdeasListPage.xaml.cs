@@ -1,5 +1,6 @@
 ﻿using IdeaAnchor.ViewModels;
 using IdeaAnchor.ItemViewModels;
+using CommunityToolkit.Maui.Core.Platform;
 
 namespace IdeaAnchor.Pages;
 
@@ -53,7 +54,7 @@ public partial class IdeasListPage : ContentPage
         }
         else
         {
-            Helper.KeyboardHelper.KeyboardVisibility(false);
+            EntrySearch.HideKeyboardAsync(CancellationToken.None);
         }
     }
 }

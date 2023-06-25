@@ -84,7 +84,6 @@
                                         Grid.ColumnSpan="2"
                                         Grid.Row="1"
                                         Text="{Binding Idea.Content}"
-                                        FontAttributes="Italic"
                                         VerticalOptions="End"
                                         MaxLines="2"/>
 

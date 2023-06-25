@@ -1,4 +1,5 @@
-﻿using IdeaAnchor.Database;
+﻿using CommunityToolkit.Maui.Core.Platform;
+using IdeaAnchor.Database;
 using IdeaAnchor.Helper;
 using IdeaAnchor.ViewModels;
 using Microsoft.Maui.Platform;
@@ -46,7 +47,7 @@ public partial class IdeaPage : ContentPage
             if (EditorMain.Text != null)
                 EditorMain.CursorPosition = EditorMain.Text.Length;
 
-            KeyboardHelper.KeyboardVisibility(visible: true);
+            EditorMain.ShowKeyboardAsync(CancellationToken.None);
         }
         catch(Exception e)
         {
