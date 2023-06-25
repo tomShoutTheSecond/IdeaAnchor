@@ -6,6 +6,8 @@ namespace IdeaAnchor;
 
 public partial class MainPage : ContentPage
 {
+	private MainViewModel _vm => BindingContext as MainViewModel;
+
 	public MainPage(MainViewModel vm)
 	{
 		InitializeComponent();
@@ -17,21 +19,7 @@ public partial class MainPage : ContentPage
     {
         base.OnAppearing();
 
-        BorderMyIdeas.BackgroundColor = ThemeColors.ColorDarkGrey;
-        BorderNewIdea.BackgroundColor = ThemeColors.ColorDarkGrey;
-    }
-
-    private async void GoToMyIdeas(object sender, EventArgs e)
-	{
-		BorderMyIdeas.BackgroundColor = ThemeColors.Primary;
-
-        await Shell.Current.GoToAsync(nameof(IdeasListPage));
-    }
-
-    private async void CreateNewIdea(object sender, EventArgs e)
-    {
-        BorderNewIdea.BackgroundColor = ThemeColors.Primary;
-        await Shell.Current.GoToAsync(nameof(IdeaPage));
+		_vm.OnAppearing();
     }
 }
 

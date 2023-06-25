@@ -8,10 +8,6 @@
     <ContentPage.Behaviors>
         <toolkit:StatusBarBehavior StatusBarColor="{StaticResource ColorVeryDarkGrey}" StatusBarStyle="LightContent" />
     </ContentPage.Behaviors>
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="New" Clicked="CreateNewIdea" />
-    </ContentPage.ToolbarItems>
 			 
     <Grid VerticalOptions="Fill">
 
@@ -44,14 +40,14 @@
         </VerticalStackLayout>
 
         <!-- New Idea Button -->
-        <Border Grid.Row="1" x:Name="BorderNewIdea" Margin="16" BackgroundColor="{StaticResource ColorDarkGrey}" StrokeThickness="0" VerticalOptions="Start">
+        <Border Grid.Row="1" x:Name="BorderNewIdea" Margin="16" BackgroundColor="{Binding CreateIdeaButtonBackgroundColor}" StrokeThickness="0" VerticalOptions="Start">
 
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="16" />
             </Border.StrokeShape>
 
             <Border.GestureRecognizers>
-                <TapGestureRecognizer Tapped="CreateNewIdea"/>
+                <TapGestureRecognizer Command="{Binding CreateNewIdeaCommand}"/>
             </Border.GestureRecognizers>
 
             <Grid Padding="32">
@@ -69,14 +65,14 @@
         </Border>
 
         <!-- My Ideas Button -->
-        <Border Grid.Row="2" x:Name="BorderMyIdeas" Margin="16, 0, 16, 16" BackgroundColor="{StaticResource ColorDarkGrey}" StrokeThickness="0" VerticalOptions="Start">
+        <Border Grid.Row="2" x:Name="BorderMyIdeas" Margin="16, 0, 16, 16" BackgroundColor="{Binding MyIdeasButtonBackgroundColor}" StrokeThickness="0" VerticalOptions="Start">
 
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="16" />
             </Border.StrokeShape>
 
             <Border.GestureRecognizers>
-                <TapGestureRecognizer Tapped="GoToMyIdeas"/>
+                <TapGestureRecognizer Command="{Binding GoToMyIdeasCommand}"/>
             </Border.GestureRecognizers>
 
             <Grid Padding="32">
