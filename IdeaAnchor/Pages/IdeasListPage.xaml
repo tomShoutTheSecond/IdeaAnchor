@@ -40,12 +40,12 @@
             <Label IsVisible="{Binding IsSearchVisible, Converter={StaticResource InvertedBoolConverter}}" Grid.Column="1" Text="My Ideas" FontSize="18" HorizontalTextAlignment="Center"/>
 
             <!-- Search Entry -->
-            <Entry Text="{Binding SearchText}" IsVisible="{Binding IsSearchVisible}" Placeholder="Search..." Grid.Column="1" FontSize="18" />
+            <Entry x:Name="EntrySearch" Text="{Binding SearchText}" IsVisible="{Binding IsSearchVisible}" Placeholder="Search..." Grid.Column="1" FontSize="18" />
 
             <!-- Search Button -->
             <StackLayout Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" Margin="16, 0, 0, 0">
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ToggleSearchVisibilityCommand}"/>
+                    <TapGestureRecognizer Tapped="ToggleSearchVisibility"/>
                 </StackLayout.GestureRecognizers>
                 <Label Text="{Binding SearchButtonIcon}" FontSize="24" FontFamily="FontAwesome" HeightRequest="24" WidthRequest="24" HorizontalOptions="Start" VerticalOptions="Fill" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
             </StackLayout>

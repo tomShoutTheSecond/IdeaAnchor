@@ -31,6 +31,10 @@ public partial class IdeaPage : ContentPage
         {
             EntryTitle.Margin = new Thickness(11, 0, 11, 0);
         }
+        else if (DeviceInfo.Platform == DevicePlatform.Android)
+        {
+            EntryTitle.Margin = new Thickness(6, 0, 6, 0);
+        }
     }
 
     private void FocusEditor()

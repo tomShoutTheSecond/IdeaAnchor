@@ -8,8 +8,6 @@ namespace IdeaAnchor.ViewModels
 {
     public class IdeasListViewModel : BindableObject
     {
-        public ICommand ToggleSearchVisibilityCommand => new Command(ToggleSearchVisibility);
-
         public string SearchButtonIcon => IsSearchVisible ? "\uf00d" : "\uf002";
 
         private bool _isSearchVisible;
@@ -24,7 +22,7 @@ namespace IdeaAnchor.ViewModels
 
                 if (_isSearchVisible == false)
                 {
-                    SearchText = null;
+                    SearchText = "";
                     _searchTimer.Stop();
                     VisibleIdeas = _allIdeas;
                 }
@@ -98,9 +96,9 @@ namespace IdeaAnchor.ViewModels
 
         private void SearchIdeas()
         {
-            var searchQuery = SearchText;
+            var searchQuery = SearchText.ToLowerInvariant();
 
-            VisibleIdeas = _allIdeas.Where(i => i.Idea.Title.IndexOf(searchQuery) > -1 || i.Idea.Content.IndexOf(searchQuery) > -1).ToList();
+            VisibleIdeas = _allIdeas.Where(i => i.Idea.Title.ToLowerInvariant().IndexOf(searchQuery) > -1 || i.Idea.Content.ToLowerInvariant().IndexOf(searchQuery) > -1).ToList();
         }
     }
 }

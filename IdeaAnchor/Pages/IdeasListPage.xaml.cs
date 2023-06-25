@@ -42,4 +42,18 @@ public partial class IdeasListPage : ContentPage
     {
         await Shell.Current.GoToAsync("..");
     }
+
+    private void ToggleSearchVisibility(System.Object sender, System.EventArgs e)
+    {
+        _vm.ToggleSearchVisibility();
+
+        if (_vm.IsSearchVisible)
+        {
+            EntrySearch.Focus();
+        }
+        else
+        {
+            Helper.KeyboardHelper.KeyboardVisibility(false);
+        }
+    }
 }
