@@ -22,12 +22,17 @@ public partial class IdeaPage : ContentPage
 
     private async void Init()
     {
+        SetTitleAlignment();
+
         await Task.Delay(50);
 
         //only focus editor for new notes
         if (_vm.ExistingIdea == null)
             FocusEditor();
+    }
 
+    private void SetTitleAlignment()
+    {
         if (DeviceInfo.Platform == DevicePlatform.iOS || DeviceInfo.Platform == DevicePlatform.macOS)
         {
             EntryTitle.Margin = new Thickness(11, 0, 11, 0);
@@ -60,16 +65,6 @@ public partial class IdeaPage : ContentPage
         FocusEditor();
     }
 
-    private void SaveIdea(System.Object sender, System.EventArgs e)
-    {
-        _ = _vm.SaveIdea();
-    }
-
-    private async void GoBack(System.Object sender, System.EventArgs e)
-    {
-        await Shell.Current.GoToAsync("..");
-    }
-
     private async void DeleteIdea(System.Object sender, System.EventArgs e)
     {
         var result = await DisplayAlert("", "Are you sure you want to delete this idea?", "Yes", "No");
@@ -77,8 +72,6 @@ public partial class IdeaPage : ContentPage
             return;
 
         await _vm.DeleteIdea();
-
-        GoBack(null, null);
     }
 
     private async void ShareIdea(System.Object sender, System.EventArgs e)

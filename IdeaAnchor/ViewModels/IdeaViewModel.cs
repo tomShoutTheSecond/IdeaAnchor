@@ -3,6 +3,7 @@ using System.Windows.Input;
 using IdeaAnchor.Database;
 using IdeaAnchor.Models;
 using IdeaAnchor.Helper;
+using CommunityToolkit.Mvvm.Input;
 
 namespace IdeaAnchor.ViewModels
 {
@@ -13,6 +14,12 @@ namespace IdeaAnchor.ViewModels
         private readonly IdeaDatabase _db;
 
         public Idea ExistingIdea { get; set; }
+
+        public string SaveButtonIcon => IdeaIsSaved ? "\uf104" : "\uf00c";
+
+        public Color SaveButtonColor => IdeaIsSaved ? Colors.White : ThemeColors.Primary;
+
+        public ICommand SaveOrGoBackCommand => new AsyncRelayCommand(SaveOrGoBack);
 
         public IdeaViewModel(IdeaDatabase db)
 		{
@@ -29,6 +36,8 @@ namespace IdeaAnchor.ViewModels
                 _ideaIsSaved = value;
 
                 OnPropertyChanged(nameof(IdeaIsSaved));
+                OnPropertyChanged(nameof(SaveButtonIcon));
+                OnPropertyChanged(nameof(SaveButtonColor));
             }
         }
 
@@ -60,7 +69,24 @@ namespace IdeaAnchor.ViewModels
 			}
 		}
 
-		public async Task SaveIdea()
+        private async Task SaveOrGoBack()
+        {
+            if (IdeaIsSaved)
+            {
+                await GoBack();
+            }
+            else
+            {
+                await SaveIdea();
+            }
+        }
+
+        private async Task GoBack()
+        {
+            await Shell.Current.GoToAsync("..");
+        }
+
+        private async Task SaveIdea()
 		{
             IdeaTitle = IdeaTitle == null ? null : IdeaTitle.Trim();
             IdeaContent = IdeaContent == null ? null : IdeaContent.Trim();
@@ -134,6 +160,8 @@ namespace IdeaAnchor.ViewModels
                 return;
 
             await _db.DeleteIdeaAsync(ExistingIdea);
+
+            await GoBack();
         }
     }
 }

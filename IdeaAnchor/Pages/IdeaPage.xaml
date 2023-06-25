@@ -7,19 +7,13 @@
              Title=""
              Shell.NavBarIsVisible="false">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <Grid VerticalOptions="Fill">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Margin="16" HorizontalOptions="Fill">
+        <Grid HorizontalOptions="Fill" HeightRequest="56">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -28,24 +22,16 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <!-- Save Button -->
-            <StackLayout HorizontalOptions="Start" VerticalOptions="Center" Margin="0, 0, 16, 0">
+            <!-- Save / Back Button -->
+            <StackLayout HorizontalOptions="Start" VerticalOptions="Center" Padding="16">
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="SaveIdea"/>
+                    <TapGestureRecognizer Command="{Binding SaveOrGoBackCommand}"/>
                 </StackLayout.GestureRecognizers>
-                <Label Text="&#xf00c;" TextColor="{StaticResource Primary}" IsVisible="{Binding IdeaIsSaved, Converter={StaticResource InvertedBoolConverter}}" FontSize="24" FontFamily="FontAwesome" HeightRequest="24" WidthRequest="24" HorizontalOptions="Start" VerticalOptions="Fill" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-            </StackLayout>
-
-            <!-- Back Button -->
-            <StackLayout HorizontalOptions="Start" VerticalOptions="Center" Margin="0, 0, 16, 0">
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="GoBack"/>
-                </StackLayout.GestureRecognizers>
-                <Label Text="&#xf104;" IsVisible="{Binding IdeaIsSaved}" FontSize="24" FontFamily="FontAwesome" HeightRequest="24" WidthRequest="24" HorizontalOptions="Start" VerticalOptions="Fill" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                <Label Text="{Binding SaveButtonIcon}" TextColor="{Binding SaveButtonColor}" FontSize="24" FontFamily="FontAwesome" HeightRequest="24" WidthRequest="24" HorizontalOptions="Start" VerticalOptions="Fill" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
             </StackLayout>
 
             <!-- Delete Button -->
-            <StackLayout Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" Margin="0, 0, 24, 0">
+            <StackLayout Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" Padding="16">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="DeleteIdea"/>
                 </StackLayout.GestureRecognizers>
@@ -53,7 +39,7 @@
             </StackLayout>
 
             <!-- Share Button -->
-            <StackLayout Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" Margin="0, 0, 0, 0">
+            <StackLayout Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" Padding="16">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ShareIdea"/>
                 </StackLayout.GestureRecognizers>

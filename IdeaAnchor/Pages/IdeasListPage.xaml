@@ -21,7 +21,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Margin="16" HorizontalOptions="Fill" HeightRequest="26">
+        <Grid HorizontalOptions="Fill" HeightRequest="56">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -29,7 +29,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Back Button -->
-            <StackLayout HorizontalOptions="Start" VerticalOptions="Center" Margin="0, 0, 16, 0">
+            <StackLayout HorizontalOptions="Start" VerticalOptions="Center" Padding="16">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="GoBack"/>
                 </StackLayout.GestureRecognizers>
@@ -37,13 +37,13 @@
             </StackLayout>
 
             <!-- Title -->
-            <Label IsVisible="{Binding IsSearchVisible, Converter={StaticResource InvertedBoolConverter}}" Grid.Column="1" Text="My Ideas" FontSize="18" HorizontalTextAlignment="Center"/>
+            <Label IsVisible="{Binding IsSearchVisible, Converter={StaticResource InvertedBoolConverter}}" Grid.Column="1" Text="My Ideas" FontSize="18" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
 
             <!-- Search Entry -->
-            <Entry x:Name="EntrySearch" Text="{Binding SearchText}" IsVisible="{Binding IsSearchVisible}" Placeholder="Search..." Grid.Column="1" FontSize="18" />
+            <Entry x:Name="EntrySearch" Text="{Binding SearchText}" IsVisible="{Binding IsSearchVisible}" Placeholder="Search..." Grid.Column="1" FontSize="18" VerticalOptions="Center" />
 
             <!-- Search Button -->
-            <StackLayout Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" Margin="16, 0, 0, 0">
+            <StackLayout Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" Padding="16">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ToggleSearchVisibility"/>
                 </StackLayout.GestureRecognizers>
