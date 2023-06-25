@@ -9,7 +9,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <toolkit:BoolToObjectConverter x:Key="BoolToObjectConverter" TrueObject="{StaticResource Primary}" FalseObject="{StaticResource ColorDarkGrey}" />
+            <toolkit:BoolToObjectConverter x:Key="HighlightColorConverter" TrueObject="{StaticResource Primary}" FalseObject="{StaticResource ColorDarkGrey}" />
             <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
             <converters:TimeStampConverter x:Key="TimeStampConverter" />
         </ResourceDictionary>
@@ -21,7 +21,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Margin="16" HorizontalOptions="Fill">
+        <Grid Margin="16" HorizontalOptions="Fill" HeightRequest="26">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -40,26 +40,26 @@
             <Label IsVisible="{Binding IsSearchVisible, Converter={StaticResource InvertedBoolConverter}}" Grid.Column="1" Text="My Ideas" FontSize="18" HorizontalTextAlignment="Center"/>
 
             <!-- Search Entry -->
-            <Entry IsVisible="{Binding IsSearchVisible}" Placeholder="Search..." Grid.Column="1" Text="My Ideas" FontSize="18" />
+            <Entry Text="{Binding SearchText}" IsVisible="{Binding IsSearchVisible}" Placeholder="Search..." Grid.Column="1" FontSize="18" />
 
             <!-- Search Button -->
-            <StackLayout Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" Margin="16, 0, 0, 0" BackgroundColor="Red">
+            <StackLayout Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" Margin="16, 0, 0, 0">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ToggleSearchVisibilityCommand}"/>
                 </StackLayout.GestureRecognizers>
-                <Label Text="&#xf002;" FontSize="24" FontFamily="FontAwesome" HeightRequest="24" WidthRequest="24" HorizontalOptions="Start" VerticalOptions="Fill" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                <Label Text="{Binding SearchButtonIcon}" FontSize="24" FontFamily="FontAwesome" HeightRequest="24" WidthRequest="24" HorizontalOptions="Start" VerticalOptions="Fill" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
             </StackLayout>
 
         </Grid>
 
-        <ListView Grid.Row="1" ItemsSource="{Binding Ideas}" ItemSelected="ListView_ItemSelected" RowHeight="112" SeparatorVisibility="None" BackgroundColor="{StaticResource ColorVeryDarkGrey}">
+        <ListView Grid.Row="1" ItemsSource="{Binding VisibleIdeas}" ItemSelected="ListView_ItemSelected" RowHeight="112" SeparatorVisibility="None" BackgroundColor="{StaticResource ColorVeryDarkGrey}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
 
                         <VerticalStackLayout BackgroundColor="{StaticResource ColorVeryDarkGrey}">
 
-                            <Border x:Name="BorderMyIdeas" Margin="16, 16, 16, 16" BackgroundColor="{Binding IsSelected, Converter={StaticResource BoolToObjectConverter}}" StrokeThickness="0" VerticalOptions="Start">
+                            <Border x:Name="BorderMyIdeas" Margin="16, 16, 16, 16" BackgroundColor="{Binding IsSelected, Converter={StaticResource HighlightColorConverter}}" StrokeThickness="0" VerticalOptions="Start">
 
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="16" />

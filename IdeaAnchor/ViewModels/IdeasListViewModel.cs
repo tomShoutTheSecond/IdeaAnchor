@@ -10,6 +10,8 @@ namespace IdeaAnchor.ViewModels
     {
         public ICommand ToggleSearchVisibilityCommand => new Command(ToggleSearchVisibility);
 
+        public string SearchButtonIcon => IsSearchVisible ? "\uf00d" : "\uf002";
+
         private bool _isSearchVisible;
         public bool IsSearchVisible
         {
@@ -18,25 +20,53 @@ namespace IdeaAnchor.ViewModels
             {
                 _isSearchVisible = value;
                 OnPropertyChanged(nameof(IsSearchVisible));
+                OnPropertyChanged(nameof(SearchButtonIcon));
+
+                if (_isSearchVisible == false)
+                {
+                    SearchText = null;
+                    _searchTimer.Stop();
+                    VisibleIdeas = _allIdeas;
+                }
             }
         }
 
-        private List<IdeaItemViewModel> _ideas;
-        public List<IdeaItemViewModel> Ideas
+        private string _searchText;
+        public string SearchText
         {
-            get => _ideas;
+            get => _searchText;
             set
             {
-                _ideas = value;
-                OnPropertyChanged(nameof(Ideas));
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+
+                //restart timer
+                _searchTimer.Stop();
+                _searchTimer.Start();
+            }
+        }
+
+        private List<IdeaItemViewModel> _visibleIdeas;
+        public List<IdeaItemViewModel> VisibleIdeas
+        {
+            get => _visibleIdeas;
+            set
+            {
+                _visibleIdeas = value;
+                OnPropertyChanged(nameof(VisibleIdeas));
             }
         }
 
         private readonly IdeaDatabase _db;
+        private readonly System.Timers.Timer _searchTimer;
+        private List<IdeaItemViewModel> _allIdeas;
 
         public IdeasListViewModel(IdeaDatabase db)
         {
             _db = db;
+
+            _searchTimer = new System.Timers.Timer(250);
+            _searchTimer.Elapsed += (s, e) => SearchIdeas();
 
             _ = LoadIdeas();
         }
@@ -47,11 +77,13 @@ namespace IdeaAnchor.ViewModels
             {
                 var ideaModels = await _db.GetIdeasAsync();
 
-                Ideas = ideaModels
+                _allIdeas = ideaModels
                     .Select(i => new IdeaItemViewModel { Idea = i })
                     .Reverse() //reverse is called as an optimisation, as it will reduce the length of the time it takes to put the items in the correct order
                     .OrderByDescending(i => i.LastUpdatedDateTime)
                     .ToList();
+
+                VisibleIdeas = _allIdeas;
             }
             catch(Exception e)
             {
@@ -62,6 +94,13 @@ namespace IdeaAnchor.ViewModels
         public void ToggleSearchVisibility()
         {
             IsSearchVisible = !IsSearchVisible;
+        }
+
+        private void SearchIdeas()
+        {
+            var searchQuery = SearchText;
+
+            VisibleIdeas = _allIdeas.Where(i => i.Idea.Title.IndexOf(searchQuery) > -1 || i.Idea.Content.IndexOf(searchQuery) > -1).ToList();
         }
     }
 }

@@ -26,6 +26,11 @@ public partial class IdeaPage : ContentPage
         //only focus editor for new notes
         if (_vm.ExistingIdea == null)
             FocusEditor();
+
+        if (DeviceInfo.Platform == DevicePlatform.iOS || DeviceInfo.Platform == DevicePlatform.macOS)
+        {
+            EntryTitle.Margin = new Thickness(11, 0, 11, 0);
+        }
     }
 
     private void FocusEditor()

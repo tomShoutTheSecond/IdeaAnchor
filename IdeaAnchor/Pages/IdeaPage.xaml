@@ -68,7 +68,7 @@
                 </VerticalStackLayout.GestureRecognizers>
 
                 <!-- Title Entry -->
-                <Entry Text="{Binding IdeaTitle}" ios:Entry.CursorColor="{StaticResource Primary}" FontSize="36" Placeholder="Title" TextColor="White" Margin="8, 0, 8, 0"/>
+                <Entry x:Name="EntryTitle" Text="{Binding IdeaTitle}" ios:Entry.CursorColor="{StaticResource Primary}" FontSize="36" Placeholder="Title" TextColor="White" Margin="8, 0, 8, 0"/>
 
                 <!-- Main Editor -->
                 <Editor x:Name="EditorMain" Text="{Binding IdeaContent}" Placeholder="Start writing" AutoSize="TextChanges" VerticalOptions="FillAndExpand" TextColor="White" Margin="8, 0, 8, 8"/>

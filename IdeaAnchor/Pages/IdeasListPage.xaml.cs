@@ -29,7 +29,7 @@ public partial class IdeasListPage : ContentPage
         var selectedIdea = (e.SelectedItem as IdeaItemViewModel);
         selectedIdea.IsSelected = true;
 
-        _vm.Ideas = new List<IdeaItemViewModel>(_vm.Ideas);
+        _vm.VisibleIdeas = new List<IdeaItemViewModel>(_vm.VisibleIdeas);
 
         var navigationParameter = new Dictionary<string, object> { { "ExistingIdea", selectedIdea.Idea } };
         await Shell.Current.GoToAsync(nameof(IdeaPage), navigationParameter);
