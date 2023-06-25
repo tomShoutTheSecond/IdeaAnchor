@@ -10,6 +10,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <toolkit:BoolToObjectConverter x:Key="BoolToObjectConverter" TrueObject="{StaticResource Primary}" FalseObject="{StaticResource ColorDarkGrey}" />
+            <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
             <converters:TimeStampConverter x:Key="TimeStampConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -35,14 +36,18 @@
                 <Label Text="&#xf104;" IsVisible="{Binding IdeaIsSaved}" FontSize="24" FontFamily="FontAwesome" HeightRequest="24" WidthRequest="24" HorizontalOptions="Start" VerticalOptions="Fill" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
             </StackLayout>
 
-            <Label Grid.Column="1" Text="My Ideas" FontSize="18" HorizontalTextAlignment="Center"/>
+            <!-- Title -->
+            <Label IsVisible="{Binding IsSearchVisible, Converter={StaticResource InvertedBoolConverter}}" Grid.Column="1" Text="My Ideas" FontSize="18" HorizontalTextAlignment="Center"/>
 
-            <!-- Delete Button -->
-            <StackLayout Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" Margin="16, 0, 0, 0">
+            <!-- Search Entry -->
+            <Entry IsVisible="{Binding IsSearchVisible}" Placeholder="Search..." Grid.Column="1" Text="My Ideas" FontSize="18" />
+
+            <!-- Search Button -->
+            <StackLayout Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" Margin="16, 0, 0, 0" BackgroundColor="Red">
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer />
+                    <TapGestureRecognizer Command="{Binding ToggleSearchVisibilityCommand}"/>
                 </StackLayout.GestureRecognizers>
-                <Label Text="&#xf104;" Opacity="0" FontSize="24" FontFamily="FontAwesome" HeightRequest="24" WidthRequest="24" HorizontalOptions="Start" VerticalOptions="Fill" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                <Label Text="&#xf002;" FontSize="24" FontFamily="FontAwesome" HeightRequest="24" WidthRequest="24" HorizontalOptions="Start" VerticalOptions="Fill" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
             </StackLayout>
 
         </Grid>

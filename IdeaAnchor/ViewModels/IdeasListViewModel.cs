@@ -2,11 +2,25 @@
 using IdeaAnchor.Database;
 using IdeaAnchor.Models;
 using IdeaAnchor.ItemViewModels;
+using System.Windows.Input;
 
 namespace IdeaAnchor.ViewModels
 {
     public class IdeasListViewModel : BindableObject
     {
+        public ICommand ToggleSearchVisibilityCommand => new Command(ToggleSearchVisibility);
+
+        private bool _isSearchVisible;
+        public bool IsSearchVisible
+        {
+            get => _isSearchVisible;
+            set
+            {
+                _isSearchVisible = value;
+                OnPropertyChanged(nameof(IsSearchVisible));
+            }
+        }
+
         private List<IdeaItemViewModel> _ideas;
         public List<IdeaItemViewModel> Ideas
         {
@@ -14,7 +28,6 @@ namespace IdeaAnchor.ViewModels
             set
             {
                 _ideas = value;
-
                 OnPropertyChanged(nameof(Ideas));
             }
         }
@@ -44,6 +57,11 @@ namespace IdeaAnchor.ViewModels
             {
                 Console.WriteLine(e.Message);
             }
+        }
+
+        public void ToggleSearchVisibility()
+        {
+            IsSearchVisible = !IsSearchVisible;
         }
     }
 }

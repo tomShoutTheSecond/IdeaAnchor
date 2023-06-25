@@ -8,11 +8,11 @@ public partial class IdeasListPage : ContentPage
     private IdeasListViewModel _vm => BindingContext as IdeasListViewModel;
 
     public IdeasListPage(IdeasListViewModel vm)
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
 
-		BindingContext = vm;
-	}
+        BindingContext = vm;
+    }
 
     protected override void OnAppearing()
     {
