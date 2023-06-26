@@ -23,6 +23,8 @@ namespace IdeaAnchor.Services
                 await Shell.Current.CurrentPage.DisplayAlert("Import Ideas", "Select a .csv file exported from IdeaAnchor", "OK");
 
                 var fileResult = await PickFile(GetFilePickerOptions());
+                if (fileResult == null)
+                    return; //user cancelled
 
                 var content = await File.ReadAllTextAsync(fileResult.FullPath);
 
@@ -59,6 +61,10 @@ namespace IdeaAnchor.Services
                 await SaveFile(csv);
 
                 await Shell.Current.CurrentPage.DisplayAlert("Success", $"{ideas.Count} ideas exported", "OK");
+            }
+            catch(TaskCanceledException)
+            {
+                //user cancelled
             }
             catch(Exception e)
             {
