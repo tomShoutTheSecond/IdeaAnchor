@@ -57,7 +57,9 @@ public partial class IdeaPage : ContentPage
             if (EditorMain.Text != null)
                 EditorMain.CursorPosition = EditorMain.Text.Length;
 
+#if !MACCATALYST
             EditorMain.ShowKeyboardAsync(CancellationToken.None);
+#endif
         }
         catch(Exception e)
         {

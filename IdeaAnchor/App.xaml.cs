@@ -25,7 +25,8 @@ public partial class App : Application
         {
 #if ANDROID
             //set cursor color
-            handler.PlatformView.TextCursorDrawable.SetTint(ThemeColors.Primary.ToPlatform());
+            if (OperatingSystem.IsAndroidVersionAtLeast(29))
+                handler.PlatformView.TextCursorDrawable.SetTint(ThemeColors.Primary.ToPlatform());
 
             //set highlight color
             handler.PlatformView.SetHighlightColor(ThemeColors.Primary.ToPlatform());
@@ -61,7 +62,8 @@ public partial class App : Application
                 var primaryColor = (Color)color;
 
                 //set cursor color
-                handler.PlatformView.TextCursorDrawable.SetTint(primaryColor.ToPlatform());
+                if (OperatingSystem.IsAndroidVersionAtLeast(29))
+                    handler.PlatformView.TextCursorDrawable.SetTint(primaryColor.ToPlatform());
 
                 //set highlight color
                 handler.PlatformView.SetHighlightColor(primaryColor.ToPlatform());

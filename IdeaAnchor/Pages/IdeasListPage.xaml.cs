@@ -54,7 +54,9 @@ public partial class IdeasListPage : ContentPage
         }
         else
         {
+#if !MACCATALYST
             EntrySearch.HideKeyboardAsync(CancellationToken.None);
+#endif
         }
     }
 }
