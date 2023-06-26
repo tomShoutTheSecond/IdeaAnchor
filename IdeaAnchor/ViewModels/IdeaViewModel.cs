@@ -160,10 +160,8 @@ namespace IdeaAnchor.ViewModels
 
         public async Task DeleteIdea()
         {
-            if (ExistingIdea == null)
-                return;
-
-            await _db.DeleteIdeaAsync(ExistingIdea);
+            if (ExistingIdea != null)
+                await _db.DeleteIdeaAsync(ExistingIdea);
 
             await GoBack();
         }
