@@ -96,11 +96,20 @@ namespace IdeaAnchor.ViewModels
 
         private void SearchIdeas()
         {
-            _searchTimer.Stop();
+            try
+            {
+                _searchTimer.Stop();
 
-            var searchQuery = SearchText.ToLowerInvariant();
+                var searchQuery = SearchText.ToLowerInvariant();
 
-            VisibleIdeas = _allIdeas.Where(i => i.Idea.Title.ToLowerInvariant().IndexOf(searchQuery) > -1 || i.Idea.Content.ToLowerInvariant().IndexOf(searchQuery) > -1).ToList();
+                VisibleIdeas = _allIdeas.Where(i =>
+                    (i.Idea.Title ?? "").ToLowerInvariant().IndexOf(searchQuery) > -1 ||
+                    (i.Idea.Content ?? "").ToLowerInvariant().IndexOf(searchQuery) > -1).ToList();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
