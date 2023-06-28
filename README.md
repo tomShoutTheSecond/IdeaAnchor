@@ -1,6 +1,8 @@
 # IdeaAnchor
 Android &amp; iOS notes app built with .NET MAUI
 
+Uses SQLite database and MAUI Community Toolkit for filesystem integration
+
 * Android - [Get IdeaAnchor on Google Play](https://play.google.com/store/apps/details?id=ideaanchor.ideaanchor)
 
 * iOS - [Get IdeaAnchor on App Store](https://apps.apple.com/us/app/ideaanchor/id6450562752?platform=iphone)
