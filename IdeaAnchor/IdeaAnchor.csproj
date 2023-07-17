@@ -70,6 +70,9 @@
 	  <None Remove="ServiceStack.Text" />
 	  <None Remove="MenuProviders\" />
 	  <None Remove="Services\" />
+	  <None Remove="Platforms\Android\Services\" />
+	  <None Remove="Platforms\iOS\Services\" />
+	  <None Remove="Platforms\MacCatalyst\Services\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Pages\" />
@@ -81,6 +84,9 @@
 	  <Folder Include="ValueConverters\" />
 	  <Folder Include="MenuProviders\" />
 	  <Folder Include="Services\" />
+	  <Folder Include="Platforms\Android\Services\" />
+	  <Folder Include="Platforms\iOS\Services\" />
+	  <Folder Include="Platforms\MacCatalyst\Services\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Pages\MainPage.xaml">
