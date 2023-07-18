@@ -7,7 +7,7 @@
              Title=""
              Shell.NavBarIsVisible="false">
 
-    <Grid VerticalOptions="Fill">
+    <Grid x:Name="MainGrid" VerticalOptions="Start">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -49,8 +49,8 @@
             </StackLayout>
         </Grid>
 
-        <ScrollView Grid.Row="1">
-            <VerticalStackLayout BackgroundColor="{StaticResource ColorVeryDarkGrey}" VerticalOptions="FillAndExpand">
+        <ScrollView x:Name="MainScrollView" Grid.Row="1">
+            <VerticalStackLayout BackgroundColor="{StaticResource ColorVeryDarkGrey}">
                 <VerticalStackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="Container_Tapped"/>
                 </VerticalStackLayout.GestureRecognizers>
@@ -59,7 +59,7 @@
                 <Entry x:Name="EntryTitle" Text="{Binding IdeaTitle}" ios:Entry.CursorColor="{StaticResource Primary}" FontSize="36" Placeholder="Title" TextColor="White" Margin="8, 0, 8, 0"/>
 
                 <!-- Main Editor -->
-                <Editor x:Name="EditorMain" Text="{Binding IdeaContent}" Placeholder="Start writing" AutoSize="TextChanges" VerticalOptions="FillAndExpand" TextColor="White" Margin="8, 0, 8, 8"/>
+                <Editor x:Name="EditorMain" Text="{Binding IdeaContent}" Placeholder="Start writing" AutoSize="TextChanges" TextColor="White" Margin="8, 0, 8, 8"/>
             </VerticalStackLayout>
         </ScrollView>
     </Grid>

@@ -69,17 +69,15 @@
                 <TapGestureRecognizer Command="{Binding CreateNewIdeaCommand}"/>
             </Border.GestureRecognizers>
 
-            <Grid Padding="32">
-
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <Label Text="New Idea" FontSize="18" VerticalTextAlignment="Center" />
+                <Label Text="New Idea" FontSize="18" VerticalTextAlignment="Center" Margin="32, 0, 0, 0"/>
 
-                <Label Grid.Column="1" Text="&#xf067;" FontFamily="FontAwesome" FontSize="18" WidthRequest="24" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-
+                <Label Grid.Column="1" Text="&#xf067;" FontFamily="FontAwesome" FontSize="18" WidthRequest="24" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="32"/>
             </Grid>
         </Border>
 
@@ -94,17 +92,15 @@
                 <TapGestureRecognizer Command="{Binding GoToMyIdeasCommand}"/>
             </Border.GestureRecognizers>
 
-            <Grid Padding="32">
-
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <Label Text="My Ideas" FontSize="18" VerticalTextAlignment="Center" />
+                <Label Text="My Ideas" FontSize="18" VerticalTextAlignment="Center" Margin="32, 0, 0, 0"/>
 
-                <Label Grid.Column="1" Text="&#xf0c9;" FontFamily="FontAwesome" FontSize="18" WidthRequest="24" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-
+                <Label Grid.Column="1" Text="&#xf0c9;" FontFamily="FontAwesome" FontSize="18" WidthRequest="24" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="32"/>
             </Grid>
         </Border>
 

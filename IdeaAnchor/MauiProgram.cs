@@ -33,8 +33,9 @@ public static class MauiProgram
         builder.Services.AddTransient<SettingsViewModel>();
 
         builder.Services.AddSingleton<IdeaDatabase>();
-        builder.Services.AddSingleton<ImportExportService>();
         builder.Services.AddSingleton<SettingsMenuProvider>();
+        builder.Services.AddSingleton<ImportExportService>();
+        builder.Services.AddSingleton<KeyboardService>();
 
         return builder.Build();
 	}

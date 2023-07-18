@@ -1,9 +1,6 @@
 ﻿using CommunityToolkit.Maui.Core.Platform;
-using IdeaAnchor.Database;
-using IdeaAnchor.Helper;
+using IdeaAnchor.Services;
 using IdeaAnchor.ViewModels;
-using Microsoft.Maui.Platform;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace IdeaAnchor.Pages;
 
@@ -13,8 +10,13 @@ public partial class IdeaPage : ContentPage
 
     private IdeaViewModel _vm => BindingContext as IdeaViewModel;
 
-	public IdeaPage(IdeaViewModel vm)
+    private readonly KeyboardService _keyboardService;
+
+    public IdeaPage(IdeaViewModel vm,
+        KeyboardService keyboardService)
 	{
+        _keyboardService = keyboardService;
+
 		InitializeComponent();
 
         BindingContext = vm;
@@ -93,5 +95,46 @@ public partial class IdeaPage : ContentPage
     private void AnimateSavedLabel()
     {
         LabelSaved.Animate(LabelSavedAnimationKey, new Animation((progress) => LabelSaved.Opacity = 1 - progress), rate: 16, length: 2000, Easing.SinIn);
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        SetupKeyboardWindowResize();
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+
+        if (DeviceInfo.Platform == DevicePlatform.iOS)
+        {
+            _keyboardService.KeyboardDidOpen -= ResizeWindowForKeyboard;
+            _keyboardService.KeyboardDidClose -= ResizeWindowForKeyboard;
+        }
+    }
+
+    private void SetupKeyboardWindowResize()
+    {
+        if (DeviceInfo.Platform == DevicePlatform.iOS)
+        {
+            //set initial window height
+            ResizeWindowForKeyboard(this, _keyboardService.GetInitialWindowHeight());
+
+            //listen for keyboard changes
+            _keyboardService.KeyboardDidOpen += ResizeWindowForKeyboard;
+            _keyboardService.KeyboardDidClose += ResizeWindowForKeyboard;
+        }
+        else if (DeviceInfo.Platform == DevicePlatform.Android
+            || DeviceInfo.Platform == DevicePlatform.macOS)
+        {
+            MainGrid.VerticalOptions = LayoutOptions.Fill;
+        }
+    }
+
+    private void ResizeWindowForKeyboard(object sender, float endHeight)
+    {
+        MainGrid.HeightRequest = endHeight;
     }
 }
