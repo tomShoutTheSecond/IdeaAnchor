@@ -10,6 +10,7 @@ namespace IdeaAnchor.ViewModels
 	{
         private bool _isMyIdeasSelected;
         private bool _isNewIdeaSelected;
+        private bool _isSubscriptionSelected;
 
         public bool IsMyIdeasSelected
         {
@@ -35,20 +36,37 @@ namespace IdeaAnchor.ViewModels
             }
         }
 
+        public bool IsSubscriptionSelected
+        {
+            get => _isSubscriptionSelected;
+            set
+            {
+                _isSubscriptionSelected = value;
+
+                OnPropertyChanged(nameof(IsSubscriptionSelected));
+                OnPropertyChanged(nameof(SubscriptionButtonBackgroundColor));
+            }
+        }
+
         public ICommand GoToMyIdeasCommand => new AsyncRelayCommand(GoToMyIdeas);
 
         public ICommand CreateNewIdeaCommand => new AsyncRelayCommand(CreateNewIdea);
 
         public ICommand GoToSettingsCommand => new AsyncRelayCommand(GoToSettings);
 
+        public ICommand GoToSubscriptionCommand => new AsyncRelayCommand(GoToSubscription);
+
         public Color MyIdeasButtonBackgroundColor => IsMyIdeasSelected ? ThemeColors.Primary : ThemeColors.ColorDarkGrey;
 
         public Color CreateIdeaButtonBackgroundColor => IsNewIdeaSelected ? ThemeColors.Primary : ThemeColors.ColorDarkGrey;
+
+        public Color SubscriptionButtonBackgroundColor => IsSubscriptionSelected ? ThemeColors.Primary : ThemeColors.ColorDarkGrey;
 
         public void OnAppearing()
         {
             IsMyIdeasSelected = false;
             IsNewIdeaSelected = false;
+            IsSubscriptionSelected = false;
         }
 
         private async Task GoToMyIdeas()
@@ -68,6 +86,13 @@ namespace IdeaAnchor.ViewModels
         private async Task GoToSettings()
         {
             await Shell.Current.GoToAsync(nameof(SettingsPage));
+        }
+
+        private async Task GoToSubscription()
+        {
+            IsSubscriptionSelected = true;
+
+            await Shell.Current.GoToAsync(nameof(SubscriptionPage));
         }
     }
 }

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IdeaAnchor.Pages.SubscriptionPage"
+             Title="SubscriptionPage">
+    <Grid RowDefinitions="Auto, Auto, *, Auto">
+        <Label
+            Grid.Row="0"
+            Text="Get IdeaAnchor pro for 0.99 per month!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Label
+            Grid.Row="1"
+            Text="Benefits: "
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Label
+            Grid.Row="2"
+            Text="- Share your notes via text and email"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <!-- Action Button -->
+        <Border Grid.Row="3" x:Name="BorderSubscription" Margin="16, 0, 16, 16" BackgroundColor="{Binding ButtonBackgroundColor}" StrokeThickness="0" VerticalOptions="Start">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="16" />
+            </Border.StrokeShape>
+
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GetSubscriptionCommand}"/>
+            </Border.GestureRecognizers>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="IdeaAnchor Pro" FontSize="18" VerticalTextAlignment="Center" Margin="32, 0, 0, 0"/>
+
+                <Label Grid.Column="1" Text="&#xf0c9;" FontFamily="FontAwesome" FontSize="18" WidthRequest="24" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="32"/>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>

@@ -31,6 +31,8 @@ public static class MauiProgram
         builder.Services.AddTransient<IdeasListViewModel>();
         builder.Services.AddTransient<SettingsPage>();
         builder.Services.AddTransient<SettingsViewModel>();
+        builder.Services.AddTransient<SubscriptionPage>();
+        builder.Services.AddTransient<SubscriptionViewModel>();
 
         builder.Services.AddSingleton<IdeaDatabase>();
         builder.Services.AddSingleton<SettingsMenuProvider>();
