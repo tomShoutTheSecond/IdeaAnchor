@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using Controls.UserDialogs.Maui;
 using IdeaAnchor.Helper;
 using Plugin.InAppBilling;
 
@@ -86,6 +87,7 @@ namespace IdeaAnchor.ViewModels
             catch (InAppBillingPurchaseException purchaseEx)
             {
                 // Handle all the different error codes that can occure and do a pop up
+                await UserDialogs.Instance.AlertAsync(purchaseEx.Message, "Error", "OK");
             }
             catch (Exception ex)
             {

@@ -110,6 +110,7 @@
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
 	  <PackageReference Include="ServiceStack.Text" Version="6.9.0" />
 	  <PackageReference Include="Plugin.InAppBilling" Version="7.1.0" />
+	  <PackageReference Include="Controls.UserDialogs.Maui" Version="1.5.4" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Remove="Helper\Colors.cs" />

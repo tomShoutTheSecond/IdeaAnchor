@@ -4,6 +4,7 @@ using IdeaAnchor.Services;
 using IdeaAnchor.Pages;
 using IdeaAnchor.ViewModels;
 using IdeaAnchor.MenuProviders;
+using Controls.UserDialogs.Maui;
 
 namespace IdeaAnchor;
 
@@ -15,6 +16,7 @@ public static class MauiProgram
 		builder
 			.UseMauiApp<App>()
             .UseMauiCommunityToolkit()
+            .UseUserDialogs()
             .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

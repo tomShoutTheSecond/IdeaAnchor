@@ -2,26 +2,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IdeaAnchor.Pages.SubscriptionPage"
-             Title="SubscriptionPage">
-    <Grid RowDefinitions="Auto, Auto, *, Auto">
-        <Label
-            Grid.Row="0"
-            Text="Get IdeaAnchor pro for 0.99 per month!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <Label
-            Grid.Row="1"
-            Text="Benefits: "
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <Label
-            Grid.Row="2"
-            Text="- Share your notes via text and email"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="Versions">
+    <Grid RowDefinitions="Auto, *, Auto">
+        <Grid RowDefinitions="*, *, *" ColumnDefinitions="*, *, *" Padding="16" ColumnSpacing="16" RowSpacing="16" BackgroundColor="{StaticResource ColorDarkGrey}">
+            <Label Grid.Column="1" Text="Free" FontSize="20"/>
+            <Label Grid.Column="2" Text="Pro" FontSize="20"/>
+            <Label Grid.Row="1" Grid.Column="0" Text="Max notes" FontSize="18"/>
+            <Label Grid.Row="1" Grid.Column="1" Text="500" FontSize="18"/>
+            <Label Grid.Row="1" Grid.Column="2" Text="Unlimited" FontSize="18"/>
+            <Label Grid.Row="2" Grid.Column="0" Text="Max note length" FontSize="18"/>
+            <Label Grid.Row="2" Grid.Column="1" Text="10,000 chars" FontSize="18"/>
+            <Label Grid.Row="2" Grid.Column="2" Text="Unlimited" FontSize="18"/>
+        </Grid>
 
         <!-- Action Button -->
-        <Border Grid.Row="3" x:Name="BorderSubscription" Margin="16, 0, 16, 16" BackgroundColor="{Binding ButtonBackgroundColor}" StrokeThickness="0" VerticalOptions="Start">
+        <Border Grid.Row="2" x:Name="BorderSubscription" Margin="16, 0, 16, 16" BackgroundColor="{Binding ButtonBackgroundColor}" StrokeThickness="0" VerticalOptions="Start">
 
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="16" />
@@ -39,7 +34,7 @@
 
                 <Label Text="IdeaAnchor Pro" FontSize="18" VerticalTextAlignment="Center" Margin="32, 0, 0, 0"/>
 
-                <Label Grid.Column="1" Text="&#xf0c9;" FontFamily="FontAwesome" FontSize="18" WidthRequest="24" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="32"/>
+                <Label Grid.Column="1" Text="&#xf07a;" FontFamily="FontAwesome" FontSize="18" WidthRequest="24" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="32"/>
             </Grid>
         </Border>
     </Grid>
