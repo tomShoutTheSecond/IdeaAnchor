@@ -124,7 +124,7 @@
 
                 <Label Text="IdeaAnchor Pro" FontSize="18" VerticalTextAlignment="Center" Margin="32, 0, 0, 0"/>
 
-                <Label Grid.Column="1" Text="&#xf0c9;" FontFamily="FontAwesome" FontSize="18" WidthRequest="24" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="32"/>
+                <Label Grid.Column="1" Text="&#xf07a;" FontFamily="FontAwesome" FontSize="18" WidthRequest="24" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="32"/>
             </Grid>
         </Border>
 

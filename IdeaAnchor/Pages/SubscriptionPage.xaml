@@ -2,11 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IdeaAnchor.Pages.SubscriptionPage"
-             Title="Versions">
-    <Grid RowDefinitions="Auto, *, Auto">
-        <Grid RowDefinitions="*, *, *" ColumnDefinitions="*, *, *" Padding="16" ColumnSpacing="16" RowSpacing="16" BackgroundColor="{StaticResource ColorDarkGrey}">
-            <Label Grid.Column="1" Text="Free" FontSize="20"/>
-            <Label Grid.Column="2" Text="Pro" FontSize="20"/>
+             Title="">
+    <Grid RowDefinitions="Auto, Auto, *, Auto">
+        <Label Text="Upgrade to IdeaAnchor Pro to access the following benefits:" FontSize="16" Margin="16"/>
+
+        <Grid Grid.Row="1" RowDefinitions="*, *, *" ColumnDefinitions="*, *, *" Padding="16" ColumnSpacing="16" RowSpacing="16" BackgroundColor="{StaticResource ColorDarkGrey}">
+            <Label Grid.Column="1" Text="Free" FontSize="24"/>
+            <Label Grid.Column="2" Text="Pro" FontSize="24"/>
             <Label Grid.Row="1" Grid.Column="0" Text="Max notes" FontSize="18"/>
             <Label Grid.Row="1" Grid.Column="1" Text="500" FontSize="18"/>
             <Label Grid.Row="1" Grid.Column="2" Text="Unlimited" FontSize="18"/>
@@ -16,7 +18,7 @@
         </Grid>
 
         <!-- Action Button -->
-        <Border Grid.Row="2" x:Name="BorderSubscription" Margin="16, 0, 16, 16" BackgroundColor="{Binding ButtonBackgroundColor}" StrokeThickness="0" VerticalOptions="Start">
+        <Border Grid.Row="3" x:Name="BorderSubscription" Margin="16, 0, 16, 16" BackgroundColor="{Binding ButtonBackgroundColor}" StrokeThickness="0" VerticalOptions="Start">
 
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="16" />

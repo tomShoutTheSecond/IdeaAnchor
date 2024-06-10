@@ -46,7 +46,7 @@ namespace IdeaAnchor.ViewModels
                     return;
 
 
-                var productIdSub = "mysubscriptionid";
+                var productIdSub = "707";
 
                 //try to make purchase, this will return a purchase, empty, or throw an exception
                 var purchase = await CrossInAppBilling.Current.PurchaseAsync(productIdSub, ItemType.Subscription);
@@ -92,16 +92,21 @@ namespace IdeaAnchor.ViewModels
             catch (Exception ex)
             {
                 // Handle a generic exception as something really went wrong
+                await UserDialogs.Instance.AlertAsync(ex.Message, "Error", "OK");
             }
             finally
             {
                 await CrossInAppBilling.Current.DisconnectAsync();
+
+                //success popup
+                await UserDialogs.Instance.AlertAsync("You are now a Pro user!", "Wonderful", "OK");
+
                 IsBusy = false;
             }
         }
 
         //subscription time = 1 month, with 2 days margin
-        private static DateTime AddSubTime(DateTime dateTime) => dateTime.AddMonths(1).AddDays(2);
+        private static DateTime F(DateTime dateTime) => dateTime.AddMonths(1).AddDays(2);
 
         public ICommand GetSubscriptionCommand => new AsyncRelayCommand(GetSubscription);
 
