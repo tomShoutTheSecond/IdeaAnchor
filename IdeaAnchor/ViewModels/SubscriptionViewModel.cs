@@ -61,7 +61,6 @@ namespace IdeaAnchor.ViewModels
                 {
                     Preferences.Set("SubExpirationDate", AddSubTime(DateTime.UtcNow));
                     Preferences.Set("HasPurchasedSub", true);
-                    Preferences.Set("CheckSubStatus", true);
 
                     // Update UI if necessary
                     //SetPro();
@@ -106,7 +105,7 @@ namespace IdeaAnchor.ViewModels
         }
 
         //subscription time = 1 month, with 2 days margin
-        private static DateTime F(DateTime dateTime) => dateTime.AddMonths(1).AddDays(2);
+        private static DateTime AddSubTime(DateTime dateTime) => dateTime.AddMonths(1).AddDays(2);
 
         public ICommand GetSubscriptionCommand => new AsyncRelayCommand(GetSubscription);
 

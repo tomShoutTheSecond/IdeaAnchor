@@ -10,7 +10,7 @@ namespace IdeaAnchor.ViewModels
 	{
         private bool _isMyIdeasSelected;
         private bool _isNewIdeaSelected;
-        private bool _isSubscriptionSelected;
+        private bool _isProSubscriptionActive;
 
         public bool IsMyIdeasSelected
         {
@@ -38,13 +38,25 @@ namespace IdeaAnchor.ViewModels
 
         public bool IsSubscriptionSelected
         {
-            get => _isSubscriptionSelected;
+            get => _isProSubscriptionActive;
             set
             {
-                _isSubscriptionSelected = value;
+                _isProSubscriptionActive = value;
 
                 OnPropertyChanged(nameof(IsSubscriptionSelected));
                 OnPropertyChanged(nameof(SubscriptionButtonBackgroundColor));
+            }
+        }
+
+        public bool IsProSubscriptionActive
+        {
+            get => _isProSubscriptionActive;
+            set
+            {
+                _isProSubscriptionActive = value;
+
+                OnPropertyChanged(nameof(IsProSubscriptionActive));
+                OnPropertyChanged(nameof(ProStatusString));
             }
         }
 
@@ -62,11 +74,14 @@ namespace IdeaAnchor.ViewModels
 
         public Color SubscriptionButtonBackgroundColor => IsSubscriptionSelected ? ThemeColors.Primary : ThemeColors.ColorDarkGrey;
 
+        public string ProStatusString => IsProSubscriptionActive ? "Pro Version" : "Free Version";
+
         public void OnAppearing()
         {
             IsMyIdeasSelected = false;
             IsNewIdeaSelected = false;
             IsSubscriptionSelected = false;
+            IsProSubscriptionActive = GetSubscriptionStatus();
         }
 
         private async Task GoToMyIdeas()
@@ -93,6 +108,13 @@ namespace IdeaAnchor.ViewModels
             IsSubscriptionSelected = true;
 
             await Shell.Current.GoToAsync(nameof(SubscriptionPage));
+        }
+
+        private bool GetSubscriptionStatus()
+        {
+            var subExpirationDate = Preferences.Get("SubExpirationDate", DateTime.MinValue);
+            var hasPurchasedSub = Preferences.Get("HasPurchasedSub", true);
+            return hasPurchasedSub && subExpirationDate > DateTime.UtcNow;
         }
     }
 }

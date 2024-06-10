@@ -53,6 +53,11 @@
                 HorizontalOptions="Center" />
 
             <Label 
+                Text="{Binding ProStatusString}"
+                FontSize="12"
+                HorizontalOptions="Center" />
+
+            <Label 
                 Text="Built with .NET MAUI"
                 FontSize="18"
                 HorizontalOptions="Center" />
